@@ -1,8 +1,11 @@
-export const getOpts = function({ parsers, ...parserOpts } = {}) {
+export const getOpts = function({
+  parsers: allowedParsers,
+  ...parserOpts
+} = {}) {
   const { top, ...parserOptsA } = { ...DEFAULT_OPTS, ...parserOpts }
   const parserOptsB = fixFlow({ parserOpts: parserOptsA })
   const parserOptsC = addSourceType(parserOptsB)
-  return { parsers, top, parserOpts: parserOptsC }
+  return { allowedParsers, top, parserOpts: parserOptsC }
 }
 
 const DEFAULT_OPTS = {
@@ -13,9 +16,9 @@ const DEFAULT_OPTS = {
   loose: false,
   strict: false,
   locations: false,
-  parens: false,
   comments: false,
   tokens: false,
+  parens: false,
 
   typescript: false,
   flow: false,

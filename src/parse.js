@@ -1,12 +1,7 @@
 import { parsers } from './generic/main.js'
 import { normalizeNode } from './normalize/main.js'
 
-export const callParsers = function({
-  code,
-  parsers: allowedParsers,
-  top,
-  parserOpts,
-}) {
+export const callParsers = function({ code, allowedParsers, top, parserOpts }) {
   return Object.values(parsers)
     .filter(parser => isAllowed(parser, allowedParsers))
     .filter(parser => supportsSyntaxes(parser, parserOpts))

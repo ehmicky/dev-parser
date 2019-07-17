@@ -20,7 +20,7 @@ const supportsSyntaxes = function(parser, { typescript, flow, jsx }) {
 
 const callParser = function({ parser: { title, parse }, code, parserOpts }) {
   try {
-    const node = parse(code, parserOpts)
+    const node = parse(code, { ...parserOpts, sort: true })
     return { title, node }
   } catch (error) {
     return { title, error }

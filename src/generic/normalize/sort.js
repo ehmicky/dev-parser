@@ -1,6 +1,10 @@
 import { LOCATION_ATTRS } from './attributes.js'
 
-export const sortKeys = function(node) {
+export const sortKeys = function(node, { sort }) {
+  if (!sort) {
+    return node
+  }
+
   return sortObject(node, keysComparator)
 }
 

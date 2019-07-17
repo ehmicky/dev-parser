@@ -11,6 +11,7 @@ const DEFAULT_OPTS = {
   loose: false,
   strict: false,
   top: false,
+  sort: false,
   locations: false,
   comments: false,
   tokens: false,

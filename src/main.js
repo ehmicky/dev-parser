@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
-const { argv: [,, string] } = require('process')
-
+const {
+  argv: [, , string],
+} = require('process')
 const { inspect } = require('util')
 
 const esprima = require('esprima')
@@ -10,27 +11,30 @@ const acornStage3 = require('acorn-stage3')
 const acornJsx = require('acorn-jsx')
 const espree = require('espree')
 const typescriptEstree = require('@typescript-eslint/typescript-estree')
-const meriyah =  require('meriyah')
+const meriyah = require('meriyah')
 const babel = require('@babel/parser')
 const { magentaBright } = require('chalk')
 const supportsColor = require('supports-color')
 
-const parseAll = function(string, {
-  parsers,
-  next = true,
-  top = false,
-  module = true,
-  lenient = false,
-  strict = false,
-  locations = false,
-  preserveParens = false,
-  comment = false,
-  typescript = false,
-  flow = false,
-  jsx = false,
-  tokens = false,
-  source,
-} = {}) {
+const parseAll = function(
+  string,
+  {
+    parsers,
+    next = true,
+    top = false,
+    module = true,
+    lenient = false,
+    strict = false,
+    locations = false,
+    preserveParens = false,
+    comment = false,
+    typescript = false,
+    flow = false,
+    jsx = false,
+    tokens = false,
+    source,
+  } = {},
+) {
   const modes = getModes({ typescript, flow, jsx })
   const parsersA = getParsers({
     parsers,
@@ -48,15 +52,17 @@ const parseAll = function(string, {
   })
   const singleParser = parsersA.length === 1
   const output = parsersA
-    .map(({ name, parse, parseOpts }) => printParse({
-      name,
-      parse,
-      parseOpts,
-      string,
-      top,
-      locations,
-      singleParser,
-    }))
+    .map(({ name, parse, parseOpts }) =>
+      printParse({
+        name,
+        parse,
+        parseOpts,
+        string,
+        top,
+        locations,
+        singleParser,
+      }),
+    )
     .join('\n\n')
   console.log(output)
 }
@@ -127,11 +133,11 @@ const getParsers = function({
         allowReserved: lenient,
         locations,
         ranges: locations,
-        ...(comment ? {onComment: acornComments} : {}),
+        ...(comment ? { onComment: acornComments } : {}),
         preserveParens,
-        ...(next ? {ecmaVersion: 2020} : {}),
+        ...(next ? { ecmaVersion: 2020 } : {}),
         allowHashBang: true,
-        ...(tokens ? {onToken: acornTokens} : {}),
+        ...(tokens ? { onToken: acornTokens } : {}),
         sourceFile: source,
       },
       jsx: true,
@@ -145,7 +151,7 @@ const getParsers = function({
         loc: locations,
         range: locations,
         comment,
-        ...(next ? {ecmaVersion: 2019} : {}),
+        ...(next ? { ecmaVersion: 2019 } : {}),
         ecmaFeatures: {
           globalReturn: lenient,
           impliedStrict: strict,
@@ -257,14 +263,14 @@ const BABEL_NEXT_PLUGINS = [
   'numericSeparator',
   'optionalChaining',
   'partialApplication',
-  ['pipelineOperator', {proposal: 'smart'}],
+  ['pipelineOperator', { proposal: 'smart' }],
   'throwExpressions',
 ]
 
 const parseAcorn = function(
   { next, jsx, comment, tokens, acornComments, acornTokens },
   code,
-  opts
+  opts,
 ) {
   const acornA = patchAcorn({ next, jsx })
 
@@ -272,16 +278,13 @@ const parseAcorn = function(
 
   return {
     ...node,
-    ...(comment ? {onComment: acornComments} : {}),
-    ...(tokens ? {onToken: acornTokens.map(normalizeToken)} : {}),
+    ...(comment ? { onComment: acornComments } : {}),
+    ...(tokens ? { onToken: acornTokens.map(normalizeToken) } : {}),
   }
 }
 
 const patchAcorn = function({ next, jsx }) {
-  const plugins = [
-    ...(next ? [acornStage3] : []),
-    ...(jsx ? [acornJsx()] : []),
-  ]
+  const plugins = [...(next ? [acornStage3] : []), ...(jsx ? [acornJsx()] : [])]
 
   if (plugins.length === 0) {
     return acorn
@@ -295,7 +298,7 @@ const parseBabel = function(code, opts) {
 
   return {
     ...node,
-    ...(node.tokens ? {tokens: node.tokens.map(normalizeToken)} : {}),
+    ...(node.tokens ? { tokens: node.tokens.map(normalizeToken) } : {}),
   }
 }
 
@@ -348,8 +351,8 @@ const parseValue = function({ parse, parseOpts, string, top, locations }) {
     return serializeError(value.error)
   }
 
-  const topNode = getTopNode(value, {top})
-  const result = print(topNode, {locations})
+  const topNode = getTopNode(value, { top })
+  const result = print(topNode, { locations })
   return result
 }
 
@@ -366,7 +369,7 @@ const serializeError = function({ name = 'Error', message }) {
   return `${name}: ${message}`
 }
 
-const getTopNode = function(value, {top}) {
+const getTopNode = function(value, { top }) {
   if (top) {
     return value
   }
@@ -378,20 +381,20 @@ const getTopNode = function(value, {top}) {
   return value.body
 }
 
-const print = function(value, {locations}) {
-  const valueA = cleanValue(value, {locations})
+const print = function(value, { locations }) {
+  const valueA = cleanValue(value, { locations })
   const valueB = inspect(valueA, INSPECT_OPTS)
   return valueB
     .replace(START_DELIMITER_REGEXP, '')
     .replace(END_DELIMITER_REGEXP, '')
     .replace(INDENTATION_REGEXP, '')
-};
+}
 
 // Opening/closing { or [ are omitted
 const START_DELIMITER_REGEXP = /^[{[][\n ]/u
 const END_DELIMITER_REGEXP = /[\n ][}\]]$/u
 // Initial indentation is removed
-const INDENTATION_REGEXP = /^  /gmu
+const INDENTATION_REGEXP = /^ {2}/gmu
 
 const INSPECT_OPTS = {
   depth: null,
@@ -416,7 +419,7 @@ const cleanValue = function(value, cleanOpts) {
     .filter(isDefinedChild)
   const objectB = Object.fromEntries(objectA)
   return objectB
-};
+}
 
 const sortKeys = function(keyA, keyB) {
   if (keyA === 'type') {
@@ -467,7 +470,7 @@ const isDefinedChild = function([, child]) {
   return child !== undefined
 }
 
-const removeLocations = function(object, {locations}) {
+const removeLocations = function(object, { locations }) {
   if (locations) {
     return object
   }

@@ -1,41 +1,45 @@
-import { magentaBright } from 'chalk'
-import { stdout as supportsColor } from 'supports-color'
-
+import { getChalk } from './colors.js'
 import { serializeNode } from './node.js'
 
 // Serialize AST nodes so they can be printed on the console
-export const serialize = function(results) {
+export const serialize = function(results, { colors }) {
   const showHeader = results.length !== 1
+  const chalk = getChalk(colors)
 
-  return results.map(result => serializeResult(result, showHeader)).join('\n\n')
+  return results
+    .map(result => serializeResult(result, { showHeader, chalk }))
+    .join('\n\n')
 }
 
-const serializeResult = function({ title, node, error }, showHeader) {
-  const header = getHeader(title, showHeader)
-  const content = serializeContent(node, error)
+const serializeResult = function(
+  { title, node, error },
+  { showHeader, chalk },
+) {
+  const header = getHeader({ title, showHeader, chalk })
+  const content = serializeContent({ node, error, chalk })
   return `${header}${content}`
 }
 
 // Retrieve header showing each parser's name
-const getHeader = function(title, showHeader) {
+const getHeader = function({ title, showHeader, chalk }) {
   // When there's only one parser, we do not show its name
   if (!showHeader) {
     return ''
   }
 
-  if (!supportsColor) {
+  if (chalk === undefined) {
     return `[${title}]\n`
   }
 
-  const header = magentaBright.inverse.bold(` ${title} `)
+  const header = chalk.magentaBright.inverse.bold(` ${title} `)
   return `${header}\n`
 }
 
 // Serialize AST node or thrown error produced by each parser
-const serializeContent = function(node, error) {
+const serializeContent = function({ node, error, chalk }) {
   if (error) {
     return String(error)
   }
 
-  return serializeNode(node)
+  return serializeNode(node, { chalk })
 }

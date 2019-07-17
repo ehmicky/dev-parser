@@ -9,11 +9,11 @@ import { serialize } from './serialize/main.js'
 // the console
 const parseAll = function(
   code,
-  { parsers: allowedParsers, ...parserOpts } = {},
+  { parsers: allowedParsers, colors, ...parserOpts } = {},
 ) {
   const results = callParsers({ code, allowedParsers, parserOpts })
 
-  const output = serialize(results)
+  const output = serialize(results, { colors })
   // eslint-disable-next-line no-restricted-globals, no-console
   console.log(output)
 }

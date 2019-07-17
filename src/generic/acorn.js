@@ -1,4 +1,5 @@
-import acornMain from 'acorn'
+// eslint-disable-next-line import/no-namespace
+import * as acornMain from 'acorn'
 import acornStage3 from 'acorn-stage3'
 import acornJsx from 'acorn-jsx'
 import moize from 'moize'

@@ -10,4 +10,4 @@ const isNotLocation = function([key]) {
   return !LOCATION_ATTRS.includes(key)
 }
 
-export const LOCATION_ATTRS = ['start', 'end', 'loc', 'range']
+export const LOCATION_ATTRS = ['start', 'end', 'range', 'loc']

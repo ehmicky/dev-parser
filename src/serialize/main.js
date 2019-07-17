@@ -1,4 +1,5 @@
 import { magentaBright } from 'chalk'
+import { stdout as supportsColor } from 'supports-color'
 
 import { serializeNode } from './node.js'
 
@@ -17,6 +18,10 @@ const serializeResult = function({ name, node, error }, showHeader) {
 const getHeader = function(name, showHeader) {
   if (!showHeader) {
     return ''
+  }
+
+  if (!supportsColor) {
+    return `[${name}]\n`
   }
 
   const header = magentaBright.inverse.bold(` ${name} `)

@@ -1,7 +1,7 @@
 export const getOpts = function({ parsers, ...parserOpts } = {}) {
   const { top, ...parserOptsA } = { ...DEFAULT_OPTS, ...parserOpts }
   const parserOptsB = fixFlow({ parserOpts: parserOptsA })
-  const parserOptsC = addSourceType({ parserOpts: parserOptsB })
+  const parserOptsC = addSourceType(parserOptsB)
   return { parsers, top, parserOpts: parserOptsC }
 }
 

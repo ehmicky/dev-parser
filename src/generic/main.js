@@ -4,6 +4,7 @@ import { espree } from './espree.js'
 import { typescriptEstree } from './typescript_estree.js'
 import { meriyah } from './meriyah.js'
 import { babel, babelEstree } from './babel/main.js'
+import { getOpts } from './options.js'
 import { normalizeNode } from './normalize/main.js'
 
 const getParsers = function() {
@@ -24,9 +25,10 @@ const getParser = function({ id, parse, ...parser }) {
   return [id, { id, ...parser, parse: parseCode.bind(null, parse) }]
 }
 
-const parseCode = function(parse, code, parserOpts) {
-  const node = parse(code, parserOpts)
-  const nodeA = normalizeNode(node, parserOpts)
+const parseCode = function(parse, code, opts) {
+  const optsA = getOpts(opts)
+  const node = parse(code, optsA)
+  const nodeA = normalizeNode(node, optsA)
   return nodeA
 }
 

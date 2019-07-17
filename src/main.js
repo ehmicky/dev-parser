@@ -2,13 +2,13 @@
 
 import { argv } from 'process'
 
-import { getOpts } from './options.js'
 import { callParsers } from './parse.js'
 import { serialize } from './serialize/main.js'
 
-const parseAll = function(code, opts) {
-  const { allowedParsers, parserOpts } = getOpts(opts)
-
+const parseAll = function(
+  code,
+  { parsers: allowedParsers, ...parserOpts } = {},
+) {
   const results = callParsers({ code, allowedParsers, parserOpts })
 
   const output = serialize(results)

@@ -2,9 +2,7 @@ export const getOpts = function(opts = {}) {
   const optsA = { ...DEFAULT_OPTS, ...opts }
   const optsB = setForcedOpts({ opts: optsA })
   const optsC = addSourceType(optsB)
-
-  const { parsers: allowedParsers, ...parserOpts } = optsC
-  return { allowedParsers, parserOpts }
+  return optsC
 }
 
 const DEFAULT_OPTS = {

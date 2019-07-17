@@ -4,11 +4,11 @@ import { sortKeys } from './sort.js'
 
 export const normalizeNode = function(
   node,
-  { top, locations, comments, sort },
+  { top, locations, comments, parens, sort },
 ) {
   const nodeA = getTopNode(node, top)
 
-  const removedAttrs = getRemovedAttrs({ locations, comments })
+  const removedAttrs = getRemovedAttrs({ locations, comments, parens })
 
   if (!sort && removedAttrs.length === 0) {
     return nodeA

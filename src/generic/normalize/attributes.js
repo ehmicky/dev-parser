@@ -1,7 +1,8 @@
-export const getRemovedAttrs = function({ locations, comments }) {
+export const getRemovedAttrs = function({ locations, comments, parens }) {
   return [
     ...(locations ? [] : LOCATION_ATTRS),
     ...(comments ? [] : COMMENT_ATTRS),
+    ...(parens ? [] : PARENS_ATTRS),
   ]
 }
 
@@ -12,6 +13,7 @@ const COMMENT_ATTRS = [
   'leadingComments',
   'trailingComments',
 ]
+const PARENS_ATTRS = ['parenStart', 'parenthesized']
 
 export const removeAttrs = function(node, removedAttrs) {
   if (removedAttrs.length === 0) {

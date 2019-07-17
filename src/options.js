@@ -14,12 +14,12 @@ const DEFAULT_OPTS = {
   strict: false,
   locations: false,
   parens: false,
-  // TODO: rename to `comments`
-  comment: false,
+  comments: false,
+  tokens: false,
+
   typescript: false,
   flow: false,
   jsx: false,
-  tokens: false,
 }
 
 const fixFlow = function({ parserOpts, parserOpts: { flow, typescript } }) {

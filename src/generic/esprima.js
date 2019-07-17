@@ -2,13 +2,13 @@ import { parse as esprimaParse } from 'esprima'
 
 const parse = function(
   code,
-  { sourceType, loose, locations, comment, jsx, tokens },
+  { sourceType, loose, locations, comments, jsx, tokens },
 ) {
   const parseOpts = getParseOpts({
     sourceType,
     loose,
     locations,
-    comment,
+    comments,
     jsx,
     tokens,
   })
@@ -28,7 +28,7 @@ const getParseOpts = function({
   sourceType,
   loose,
   locations,
-  comment,
+  comments,
   jsx,
   tokens,
 }) {
@@ -37,7 +37,7 @@ const getParseOpts = function({
     tolerant: loose,
     loc: locations,
     range: locations,
-    comment,
+    comment: comments,
     jsx,
     tokens,
   }

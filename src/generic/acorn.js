@@ -8,7 +8,7 @@ import { normalizeTokens } from './tokens.js'
 
 const parse = function(
   code,
-  { next, jsx, comment, tokens, sourceType, loose, locations, parens, source },
+  { next, jsx, comments, tokens, sourceType, loose, locations, parens, source },
 ) {
   const acornParser = mAddPlugins(next, jsx)
 
@@ -21,14 +21,17 @@ const parse = function(
     source,
   })
 
-  const { comments, tokenObjects, onceOpts } = getOnceState({ comment, tokens })
+  const { allComments, allTokens, onceOpts } = getOnceState({
+    comments,
+    tokens,
+  })
 
   const node = acornParser.parse(code, { ...parseOpts, ...onceOpts })
 
   return {
     ...node,
-    ...addComments(comments),
-    ...normalizeTokens('onToken', tokenObjects),
+    ...addComments(allComments),
+    ...normalizeTokens('onToken', allTokens),
   }
 }
 
@@ -77,24 +80,24 @@ const getParseOpts = function({
   }
 }
 
-const getOnceState = function({ comment, tokens }) {
-  const comments = comment ? [] : undefined
-  const tokenObjects = tokens ? [] : undefined
-  const onceOpts = getOnceOpts({ comments, tokenObjects })
-  return { comments, tokenObjects, onceOpts }
+const getOnceState = function({ comments, tokens }) {
+  const allComments = comments ? [] : undefined
+  const allTokens = tokens ? [] : undefined
+  const onceOpts = getOnceOpts({ allComments, allTokens })
+  return { allComments, allTokens, onceOpts }
 }
 
-const getOnceOpts = function({ comments, tokenObjects }) {
+const getOnceOpts = function({ allComments, allTokens }) {
   return {
-    ...(comments === undefined ? {} : { onComment: comments }),
-    ...(tokenObjects === undefined ? {} : { onToken: tokenObjects }),
+    ...(allComments === undefined ? {} : { onComment: allComments }),
+    ...(allTokens === undefined ? {} : { onToken: allTokens }),
   }
 }
 
-const addComments = function(comments) {
-  if (comments === undefined) {
+const addComments = function(allComments) {
+  if (allComments === undefined) {
     return
   }
 
-  return { onComment: comments }
+  return { onComment: allComments }
 }

@@ -1,10 +1,10 @@
-export const normalizeTokens = function(name, tokens) {
-  if (tokens === undefined) {
+export const normalizeTokens = function(name, allTokens) {
+  if (allTokens === undefined) {
     return
   }
 
-  const tokensA = tokens.map(normalizeToken)
-  return { [name]: tokensA }
+  const allTokensA = allTokens.map(normalizeToken)
+  return { [name]: allTokensA }
 }
 
 const normalizeToken = function({ type: { label: type }, value }) {

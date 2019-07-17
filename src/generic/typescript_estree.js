@@ -1,10 +1,10 @@
 import { parse as typescriptEstreeParse } from '@typescript-eslint/typescript-estree'
 
-const parse = function(code, { loose, locations, comment, jsx, tokens }) {
+const parse = function(code, { loose, locations, comments, jsx, tokens }) {
   const parseOpts = getParseOpts({
     loose,
     locations,
-    comment,
+    comments,
     jsx,
     tokens,
   })
@@ -24,12 +24,12 @@ export const typescriptEstree = {
   parse,
 }
 
-const getParseOpts = function({ loose, locations, comment, jsx, tokens }) {
+const getParseOpts = function({ loose, locations, comments, jsx, tokens }) {
   return {
     errorOnUnknownASTType: loose,
     loc: locations,
     range: locations,
-    comment,
+    comment: comments,
     jsx,
     useJSXTextNode: jsx,
     tokens,

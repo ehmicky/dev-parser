@@ -1,5 +1,6 @@
 import { parse as espreeParse } from 'espree'
 
+// Parse JavaScript code with Espree
 const parse = function(
   code,
   { legacy, sourceType, loose, strict, locations, comments, tokens, jsx },

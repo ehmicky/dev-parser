@@ -1,3 +1,5 @@
+// Normalize tokens format used by Babel and Acorn to make it closer to
+// format used by Espree, Esprima, Meriyah and TypeScript-ESTree
 export const normalizeTokens = function(name, allTokens) {
   if (allTokens === undefined) {
     return
@@ -7,10 +9,10 @@ export const normalizeTokens = function(name, allTokens) {
   return { [name]: allTokensA }
 }
 
-const normalizeToken = function({ type: { label: type }, value }) {
+const normalizeToken = function({ type: { label: type, ...token }, value }) {
   if (value === undefined) {
-    return { type }
+    return { type, ...token }
   }
 
-  return { type, value }
+  return { type, value, ...token }
 }

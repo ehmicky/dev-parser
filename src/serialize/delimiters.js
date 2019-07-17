@@ -1,3 +1,4 @@
+// Remove the outer [] and {} so the output takes fewer lines
 export const removeDelimiters = function(nodeString) {
   return REGEXPS.reduce(reduceDelimiter, nodeString)
 }
@@ -6,7 +7,6 @@ const reduceDelimiter = function(nodeString, regExp) {
   return nodeString.replace(regExp, '')
 }
 
-// Opening/closing { or [ are omitted
 const START_ARRAY_REGEXP = /^ *\[ *[\n ]/gu
 const END_ARRAY_REGEXP = /[\n ] *\] *$/gu
 const START_OBJECT_REGEXP = /^ *\{ *[\n ]/gu

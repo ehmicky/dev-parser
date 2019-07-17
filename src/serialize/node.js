@@ -5,6 +5,7 @@ import { stdout as supportsColor } from 'supports-color'
 import { removeDelimiters } from './delimiters.js'
 import { removeIndent } from './indent.js'
 
+// Serialize AST node produced by each parser
 export const serializeNode = function(node) {
   const nodeString = inspect(node, INSPECT_OPTS)
   const nodeStringA = removeDelimiters(nodeString)

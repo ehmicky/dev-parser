@@ -1,3 +1,4 @@
+// Normalize options and assign default values
 export const getOpts = function(opts = {}) {
   const optsA = { ...DEFAULT_OPTS, ...opts }
   const optsB = setForcedOpts({ opts: optsA })
@@ -28,7 +29,10 @@ const setForcedOpts = function({
 }) {
   return {
     ...opts,
+    // Flow is incompatible with TypeScript
     flow: flow && !typescript,
+    // Comments and tokens are usually set on the top-level, so they require
+    // the `top` option to be `true`
     top: top || comments || tokens,
   }
 }

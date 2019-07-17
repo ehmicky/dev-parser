@@ -1,5 +1,6 @@
 import { parsers } from './generic/main.js'
 
+// Parse JavaScript code with several parsers
 export const callParsers = function({ code, allowedParsers, parserOpts }) {
   return Object.values(parsers)
     .filter(parser => isAllowed(parser, allowedParsers))
@@ -7,10 +8,13 @@ export const callParsers = function({ code, allowedParsers, parserOpts }) {
     .map(parser => callParser({ parser, code, parserOpts }))
 }
 
+// The `parsers` option can whitelist specific parsers
 const isAllowed = function({ id }, allowedParsers) {
   return allowedParsers === undefined || allowedParsers.includes(id)
 }
 
+// When using the `typescript`, `flow` or `jsx` options, we only use parsers
+// that support those syntaxes
 const supportsSyntaxes = function(parser, { typescript, flow, jsx }) {
   const syntaxes = { typescript, flow, jsx }
   return Object.entries(syntaxes).every(

@@ -1,3 +1,4 @@
+// Retrieve list of attributes to remove recursively according to options
 export const getRemovedAttrs = function({ locations, comments, parens }) {
   return [
     ...(locations ? [] : LOCATION_ATTRS),
@@ -15,6 +16,7 @@ const COMMENT_ATTRS = [
 ]
 const PARENS_ATTRS = ['parenStart', 'parenthesized']
 
+// Remove AST node attributes according to optoins
 export const removeAttrs = function(node, removedAttrs) {
   if (removedAttrs.length === 0) {
     return node

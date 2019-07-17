@@ -1,5 +1,6 @@
 import { parse as meriyahParse } from 'meriyah'
 
+// Parse JavaScript code with Meriyah
 const parse = function(
   code,
   { legacy, sourceType, loose, strict, locations, parens, source, jsx },

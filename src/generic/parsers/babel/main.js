@@ -4,6 +4,7 @@ import { normalizeTokens } from '../../tokens.js'
 
 import { getPlugins } from './plugins.js'
 
+// Parse JavaScript code with @babel/parser
 const parse = function(
   plugins,
   code,
@@ -42,6 +43,7 @@ const parse = function(
   return { ...node, ...normalizeTokens('tokens', node.tokens) }
 }
 
+// @babel/parser without `estree` plugin
 export const babel = {
   id: 'babel',
   title: 'Babel',
@@ -49,6 +51,7 @@ export const babel = {
   parse: parse.bind(null, []),
 }
 
+// @babel/parser with `estree` plugin
 export const babelEstree = {
   id: 'babelEstree',
   title: 'Babel-ESTree',

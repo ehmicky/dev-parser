@@ -1,5 +1,5 @@
 import { esprima } from './esprima.js'
-import { acorn } from './acorn.js'
+import { acorn } from './acorn/main.js'
 import { espree } from './espree.js'
 import { typescriptEstree } from './typescript_estree.js'
 import { meriyah } from './meriyah.js'

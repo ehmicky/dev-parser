@@ -1,5 +1,6 @@
 import { parse as typescriptEstreeParse } from '@typescript-eslint/typescript-estree'
 
+// Parse JavaScript code with TypeScript-ESTree
 const parse = function(code, { loose, locations, comments, tokens, jsx }) {
   try {
     return typescriptEstreeParse(code, {
@@ -23,7 +24,7 @@ export const typescriptEstree = {
   parse,
 }
 
-// typescript-estree errors are not error instances
+// TypeScript-ESTree errors are not error instances
 const normalizeError = function({ message, lineNumber, column }) {
   return new Error(`${message} (${lineNumber}:${column})`)
 }

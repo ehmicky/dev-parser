@@ -1,11 +1,8 @@
-// eslint-disable-next-line import/no-namespace
-import * as acornMain from 'acorn'
-import acornStage3 from 'acorn-stage3'
-import acornJsx from 'acorn-jsx'
-import moize from 'moize'
+import { normalizeTokens } from '../../tokens.js'
 
-import { normalizeTokens } from '../tokens.js'
+import { addPlugins } from './plugins.js'
 
+// Parse JavaScript code with Acorn
 const parse = function(
   code,
   {
@@ -20,7 +17,7 @@ const parse = function(
     jsx,
   },
 ) {
-  const acornParser = mAddPlugins(legacy, jsx)
+  const acornParser = addPlugins(legacy, jsx)
 
   const { allComments, allTokens, onceOpts } = getOnceState({
     comments,
@@ -59,21 +56,8 @@ export const acorn = {
   parse,
 }
 
-const addPlugins = function(legacy, jsx) {
-  const plugins = [
-    ...(legacy ? [] : [acornStage3]),
-    ...(jsx ? [acornJsx()] : []),
-  ]
-
-  if (plugins.length === 0) {
-    return acornMain
-  }
-
-  return acornMain.Parser.extend(...plugins)
-}
-
-const mAddPlugins = moize(addPlugins)
-
+// acorn requires passing mutable arrays to collect comments and tokens.
+// This is done once per call.
 const getOnceState = function({ comments, tokens }) {
   const allComments = comments ? [] : undefined
   const allTokens = tokens ? [] : undefined

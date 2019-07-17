@@ -1,5 +1,6 @@
 import { LOCATION_ATTRS } from './attributes.js'
 
+// If the `sort` option is `true`, we sort AST node attributes
 export const sortKeys = function(node, { sort }) {
   if (!sort) {
     return node
@@ -15,6 +16,7 @@ const sortObject = function(object, comparator) {
 }
 
 const keysComparator = function(keyA, keyB) {
+  // `type` always come first
   if (keyA === 'type') {
     return -1
   }
@@ -23,42 +25,43 @@ const keysComparator = function(keyA, keyB) {
     return 1
   }
 
-  const cleanIndex = sortCleanAttr(keyA, keyB)
+  const locIndex = sortLocAttr(keyA, keyB)
 
-  if (cleanIndex !== undefined) {
-    return cleanIndex
+  if (locIndex !== undefined) {
+    return locIndex
   }
 
   return compareKeys(keyA, keyB)
 }
 
-const sortCleanAttr = function(keyA, keyB) {
-  const [cleanIndexA, cleanIndexB] = getCleanIndexes(keyA, keyB)
+// Location attributes come last, and follow a specific order with each other
+const sortLocAttr = function(keyA, keyB) {
+  const [locIndexA, locIndexB] = getLocIndexes(keyA, keyB)
 
-  if (cleanIndexA === undefined) {
+  if (locIndexA === undefined) {
     return
   }
 
-  if (cleanIndexA === -1) {
+  if (locIndexA === -1) {
     return -1
   }
 
-  if (cleanIndexB === -1) {
+  if (locIndexB === -1) {
     return 1
   }
 
-  return compareKeys(cleanIndexA, cleanIndexB)
+  return compareKeys(locIndexA, locIndexB)
 }
 
-const getCleanIndexes = function(keyA, keyB) {
-  const cleanIndexA = LOCATION_ATTRS.indexOf(keyA)
-  const cleanIndexB = LOCATION_ATTRS.indexOf(keyB)
+const getLocIndexes = function(keyA, keyB) {
+  const locIndexA = LOCATION_ATTRS.indexOf(keyA)
+  const locIndexB = LOCATION_ATTRS.indexOf(keyB)
 
-  if (cleanIndexA === -1 && cleanIndexB === -1) {
+  if (locIndexA === -1 && locIndexB === -1) {
     return []
   }
 
-  return [cleanIndexA, cleanIndexB]
+  return [locIndexA, locIndexB]
 }
 
 const compareKeys = function(keyA, keyB) {

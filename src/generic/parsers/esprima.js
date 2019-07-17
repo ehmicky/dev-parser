@@ -1,5 +1,6 @@
 import { parse as esprimaParse } from 'esprima'
 
+// Parse JavaScript code with Esprima
 const parse = function(
   code,
   { sourceType, loose, locations, comments, tokens, jsx },

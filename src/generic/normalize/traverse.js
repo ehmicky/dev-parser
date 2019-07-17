@@ -1,3 +1,4 @@
+// Traverse an object and perform a `transform()` on each descendant
 export const traverse = function(object, transform) {
   if (typeof object !== 'object' || object === null) {
     return object

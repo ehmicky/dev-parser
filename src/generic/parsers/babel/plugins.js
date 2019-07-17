@@ -1,16 +1,18 @@
+// Retrieve list of Babel plugins according to options
 export const getPlugins = function({ plugins, typescript, flow, jsx, legacy }) {
   return [
     { names: plugins, enabled: true },
     { names: ['typescript'], enabled: typescript },
     { names: ['flow', 'flowComments'], enabled: flow },
     { names: ['jsx'], enabled: jsx },
-    { names: BABEL_NEXT_PLUGINS, enabled: !legacy },
+    { names: SYNTAX_PLUGINS, enabled: !legacy },
   ]
     .filter(isPluginEnabled)
     .flatMap(getPluginsNames)
 }
 
-const BABEL_NEXT_PLUGINS = [
+// All `babel-syntax-*`
+const SYNTAX_PLUGINS = [
   // Always included:
   // 'asyncGenerators',
   // 'objectRestSpread',

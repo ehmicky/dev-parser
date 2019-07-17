@@ -4,39 +4,7 @@ const parse = function(
   code,
   { next, sourceType, locations, comments, loose, strict, jsx, tokens },
 ) {
-  const parseOpts = getParseOpts({
-    next,
-    sourceType,
-    locations,
-    comments,
-    loose,
-    strict,
-    jsx,
-    tokens,
-  })
-
-  const node = espreeParse(code, parseOpts)
-  return node
-}
-
-export const espree = {
-  id: 'espree',
-  title: 'Espree',
-  syntaxes: ['jsx'],
-  parse,
-}
-
-const getParseOpts = function({
-  next,
-  sourceType,
-  locations,
-  comments,
-  loose,
-  strict,
-  jsx,
-  tokens,
-}) {
-  return {
+  return espreeParse(code, {
     sourceType: next ? sourceType : 'script',
     loc: locations,
     range: locations,
@@ -48,5 +16,12 @@ const getParseOpts = function({
       jsx,
     },
     tokens,
-  }
+  })
+}
+
+export const espree = {
+  id: 'espree',
+  title: 'Espree',
+  syntaxes: ['jsx'],
+  parse,
 }

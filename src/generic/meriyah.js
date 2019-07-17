@@ -4,39 +4,7 @@ const parse = function(
   code,
   { sourceType, loose, strict, locations, parens, next, jsx, source },
 ) {
-  const parseOpts = getParseOpts({
-    sourceType,
-    loose,
-    strict,
-    locations,
-    parens,
-    next,
-    jsx,
-    source,
-  })
-
-  const node = meriyahParse(code, parseOpts)
-  return node
-}
-
-export const meriyah = {
-  id: 'meriyah',
-  title: 'Meriyah',
-  syntaxes: ['jsx'],
-  parse,
-}
-
-const getParseOpts = function({
-  sourceType,
-  loose,
-  strict,
-  locations,
-  parens,
-  next,
-  jsx,
-  source,
-}) {
-  return {
+  return meriyahParse(code, {
     module: sourceType === 'module',
     globalReturn: loose,
     specDeviation: loose,
@@ -49,5 +17,12 @@ const getParseOpts = function({
     next,
     jsx,
     source,
-  }
+  })
+}
+
+export const meriyah = {
+  id: 'meriyah',
+  title: 'Meriyah',
+  syntaxes: ['jsx'],
+  parse,
 }

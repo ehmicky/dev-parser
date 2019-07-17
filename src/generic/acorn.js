@@ -12,21 +12,28 @@ const parse = function(
 ) {
   const acornParser = mAddPlugins(next, jsx)
 
-  const parseOpts = getParseOpts({
-    sourceType,
-    loose,
-    locations,
-    parens,
-    next,
-    source,
-  })
-
   const { allComments, allTokens, onceOpts } = getOnceState({
     comments,
     tokens,
   })
 
-  const node = acornParser.parse(code, { ...parseOpts, ...onceOpts })
+  const node = acornParser.parse(code, {
+    sourceType,
+    // eslint-disable-next-line id-length
+    allowReturnOutsideFunction: loose,
+    // eslint-disable-next-line id-length
+    allowAwaitOutsideFunction: loose,
+    // eslint-disable-next-line id-length
+    allowImportExportEverywhere: loose,
+    allowReserved: loose,
+    locations,
+    ranges: locations,
+    preserveParens: parens,
+    ...(next ? { ecmaVersion: 2020 } : {}),
+    allowHashBang: true,
+    sourceFile: source,
+    ...onceOpts,
+  })
 
   return {
     ...node,
@@ -53,32 +60,6 @@ const addPlugins = function(next, jsx) {
 }
 
 const mAddPlugins = moize(addPlugins)
-
-const getParseOpts = function({
-  sourceType,
-  loose,
-  locations,
-  parens,
-  next,
-  source,
-}) {
-  return {
-    sourceType,
-    // eslint-disable-next-line id-length
-    allowReturnOutsideFunction: loose,
-    // eslint-disable-next-line id-length
-    allowAwaitOutsideFunction: loose,
-    // eslint-disable-next-line id-length
-    allowImportExportEverywhere: loose,
-    allowReserved: loose,
-    locations,
-    ranges: locations,
-    preserveParens: parens,
-    ...(next ? { ecmaVersion: 2020 } : {}),
-    allowHashBang: true,
-    sourceFile: source,
-  }
-}
 
 const getOnceState = function({ comments, tokens }) {
   const allComments = comments ? [] : undefined

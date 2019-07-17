@@ -4,35 +4,7 @@ const parse = function(
   code,
   { sourceType, loose, locations, comments, jsx, tokens },
 ) {
-  const parseOpts = getParseOpts({
-    sourceType,
-    loose,
-    locations,
-    comments,
-    jsx,
-    tokens,
-  })
-
-  const node = esprimaParse(code, parseOpts)
-  return node
-}
-
-export const esprima = {
-  id: 'esprima',
-  title: 'Esprima',
-  syntaxes: ['jsx'],
-  parse,
-}
-
-const getParseOpts = function({
-  sourceType,
-  loose,
-  locations,
-  comments,
-  jsx,
-  tokens,
-}) {
-  return {
+  return esprimaParse(code, {
     sourceType,
     tolerant: loose,
     loc: locations,
@@ -40,5 +12,12 @@ const getParseOpts = function({
     comment: comments,
     jsx,
     tokens,
-  }
+  })
+}
+
+export const esprima = {
+  id: 'esprima',
+  title: 'Esprima',
+  syntaxes: ['jsx'],
+  parse,
 }

@@ -20,20 +20,24 @@ const parse = function(
     source,
   },
 ) {
-  const parseOpts = getParseOpts(plugins, {
-    typescript,
-    flow,
-    jsx,
-    next,
-    sourceType,
-    loose,
-    strict,
-    locations,
-    tokens,
-    source,
-  })
+  const pluginsA = getPlugins({ plugins, typescript, flow, jsx, next })
 
-  const node = babelParse(code, parseOpts)
+  const node = babelParse(code, {
+    sourceType,
+    // eslint-disable-next-line id-length
+    allowReturnOutsideFunction: loose,
+    // eslint-disable-next-line id-length
+    allowAwaitOutsideFunction: loose,
+    // eslint-disable-next-line id-length
+    allowSuperOutsideFunction: loose,
+    // eslint-disable-next-line id-length
+    allowImportExportEverywhere: loose,
+    strictMode: strict,
+    plugins: pluginsA,
+    ranges: locations,
+    tokens,
+    sourceFilename: source,
+  })
 
   return { ...node, ...normalizeTokens('tokens', node.tokens) }
 }
@@ -50,39 +54,4 @@ export const babelEstree = {
   title: 'Babel-ESTree',
   syntaxes: ['typescript', 'flow', 'jsx'],
   parse: parse.bind(null, ['estree']),
-}
-
-const getParseOpts = function(
-  plugins,
-  {
-    typescript,
-    flow,
-    jsx,
-    next,
-    sourceType,
-    loose,
-    strict,
-    locations,
-    tokens,
-    source,
-  },
-) {
-  const pluginsA = getPlugins({ plugins, typescript, flow, jsx, next })
-
-  return {
-    sourceType,
-    // eslint-disable-next-line id-length
-    allowReturnOutsideFunction: loose,
-    // eslint-disable-next-line id-length
-    allowAwaitOutsideFunction: loose,
-    // eslint-disable-next-line id-length
-    allowSuperOutsideFunction: loose,
-    // eslint-disable-next-line id-length
-    allowImportExportEverywhere: loose,
-    strictMode: strict,
-    plugins: pluginsA,
-    ranges: locations,
-    tokens,
-    sourceFilename: source,
-  }
 }

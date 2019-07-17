@@ -9,8 +9,7 @@ const DEFAULT_OPTS = {
   top: false,
 
   next: true,
-  // TODO: rename to `script`
-  moduleOpt: true,
+  script: false,
   // TODO: rename to `tolerant`
   lenient: false,
   strict: false,
@@ -33,7 +32,7 @@ const fixFlow = function({ parserOpts, parserOpts: { flow, typescript } }) {
   return { ...parserOpts, flow: false }
 }
 
-const addSourceType = function({ moduleOpt, ...parserOpts }) {
-  const sourceType = moduleOpt ? 'module' : 'script'
+const addSourceType = function({ script, ...parserOpts }) {
+  const sourceType = script ? 'script' : 'module'
   return { ...parserOpts, sourceType }
 }

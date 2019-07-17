@@ -13,7 +13,7 @@ const parse = function(
     jsx,
     next,
     sourceType,
-    lenient,
+    loose,
     strict,
     locations,
     tokens,
@@ -26,7 +26,7 @@ const parse = function(
     jsx,
     next,
     sourceType,
-    lenient,
+    loose,
     strict,
     locations,
     tokens,
@@ -60,7 +60,7 @@ const getParseOpts = function(
     jsx,
     next,
     sourceType,
-    lenient,
+    loose,
     strict,
     locations,
     tokens,
@@ -72,13 +72,13 @@ const getParseOpts = function(
   return {
     sourceType,
     // eslint-disable-next-line id-length
-    allowReturnOutsideFunction: lenient,
+    allowReturnOutsideFunction: loose,
     // eslint-disable-next-line id-length
-    allowAwaitOutsideFunction: lenient,
+    allowAwaitOutsideFunction: loose,
     // eslint-disable-next-line id-length
-    allowSuperOutsideFunction: lenient,
+    allowSuperOutsideFunction: loose,
     // eslint-disable-next-line id-length
-    allowImportExportEverywhere: lenient,
+    allowImportExportEverywhere: loose,
     strictMode: strict,
     plugins: pluginsA,
     ranges: locations,

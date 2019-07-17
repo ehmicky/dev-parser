@@ -2,11 +2,11 @@ import { parse as meriyahParse } from 'meriyah'
 
 const parse = function(
   code,
-  { sourceType, lenient, strict, locations, preserveParens, next, jsx, source },
+  { sourceType, loose, strict, locations, preserveParens, next, jsx, source },
 ) {
   const parseOpts = getParseOpts({
     sourceType,
-    lenient,
+    loose,
     strict,
     locations,
     preserveParens,
@@ -28,7 +28,7 @@ export const meriyah = {
 
 const getParseOpts = function({
   sourceType,
-  lenient,
+  loose,
   strict,
   locations,
   preserveParens,
@@ -38,8 +38,8 @@ const getParseOpts = function({
 }) {
   return {
     module: sourceType === 'module',
-    globalReturn: lenient,
-    specDeviation: lenient,
+    globalReturn: loose,
+    specDeviation: loose,
     impliedStrict: strict,
     loc: locations,
     ranges: locations,

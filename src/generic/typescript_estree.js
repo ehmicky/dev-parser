@@ -1,8 +1,8 @@
 import { parse as typescriptEstreeParse } from '@typescript-eslint/typescript-estree'
 
-const parse = function(code, { lenient, locations, comment, jsx, tokens }) {
+const parse = function(code, { loose, locations, comment, jsx, tokens }) {
   const parseOpts = getParseOpts({
-    lenient,
+    loose,
     locations,
     comment,
     jsx,
@@ -24,9 +24,9 @@ export const typescriptEstree = {
   parse,
 }
 
-const getParseOpts = function({ lenient, locations, comment, jsx, tokens }) {
+const getParseOpts = function({ loose, locations, comment, jsx, tokens }) {
   return {
-    errorOnUnknownASTType: lenient,
+    errorOnUnknownASTType: loose,
     loc: locations,
     range: locations,
     comment,

@@ -14,7 +14,7 @@ const parse = function(
     comment,
     tokens,
     sourceType,
-    lenient,
+    loose,
     locations,
     preserveParens,
     source,
@@ -24,7 +24,7 @@ const parse = function(
 
   const parseOpts = getParseOpts({
     sourceType,
-    lenient,
+    loose,
     locations,
     preserveParens,
     next,
@@ -63,7 +63,7 @@ const mAddPlugins = moize(addPlugins)
 
 const getParseOpts = function({
   sourceType,
-  lenient,
+  loose,
   locations,
   preserveParens,
   next,
@@ -72,12 +72,12 @@ const getParseOpts = function({
   return {
     sourceType,
     // eslint-disable-next-line id-length
-    allowReturnOutsideFunction: lenient,
+    allowReturnOutsideFunction: loose,
     // eslint-disable-next-line id-length
-    allowAwaitOutsideFunction: lenient,
+    allowAwaitOutsideFunction: loose,
     // eslint-disable-next-line id-length
-    allowImportExportEverywhere: lenient,
-    allowReserved: lenient,
+    allowImportExportEverywhere: loose,
+    allowReserved: loose,
     locations,
     ranges: locations,
     preserveParens,

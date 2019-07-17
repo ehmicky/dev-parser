@@ -2,14 +2,14 @@ import { parse as espreeParse } from 'espree'
 
 const parse = function(
   code,
-  { next, sourceType, locations, comment, lenient, strict, jsx, tokens },
+  { next, sourceType, locations, comment, loose, strict, jsx, tokens },
 ) {
   const parseOpts = getParseOpts({
     next,
     sourceType,
     locations,
     comment,
-    lenient,
+    loose,
     strict,
     jsx,
     tokens,
@@ -31,7 +31,7 @@ const getParseOpts = function({
   sourceType,
   locations,
   comment,
-  lenient,
+  loose,
   strict,
   jsx,
   tokens,
@@ -43,7 +43,7 @@ const getParseOpts = function({
     comment,
     ...(next ? { ecmaVersion: 2019 } : {}),
     ecmaFeatures: {
-      globalReturn: lenient,
+      globalReturn: loose,
       impliedStrict: strict,
       jsx,
     },

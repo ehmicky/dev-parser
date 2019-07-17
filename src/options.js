@@ -10,8 +10,7 @@ const DEFAULT_OPTS = {
 
   next: true,
   script: false,
-  // TODO: rename to `tolerant`
-  lenient: false,
+  loose: false,
   strict: false,
   locations: false,
   // TODO: rename to `parens`

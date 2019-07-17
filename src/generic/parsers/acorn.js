@@ -4,7 +4,7 @@ import acornStage3 from 'acorn-stage3'
 import acornJsx from 'acorn-jsx'
 import moize from 'moize'
 
-import { normalizeTokens } from './tokens.js'
+import { normalizeTokens } from '../tokens.js'
 
 const parse = function(
   code,

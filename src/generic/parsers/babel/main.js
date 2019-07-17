@@ -1,6 +1,6 @@
 import { parse as babelParse } from '@babel/parser'
 
-import { normalizeTokens } from '../tokens.js'
+import { normalizeTokens } from '../../tokens.js'
 
 import { getPlugins } from './plugins.js'
 

@@ -8,17 +8,7 @@ import { normalizeTokens } from './tokens.js'
 
 const parse = function(
   code,
-  {
-    next,
-    jsx,
-    comment,
-    tokens,
-    sourceType,
-    loose,
-    locations,
-    preserveParens,
-    source,
-  },
+  { next, jsx, comment, tokens, sourceType, loose, locations, parens, source },
 ) {
   const acornParser = mAddPlugins(next, jsx)
 
@@ -26,7 +16,7 @@ const parse = function(
     sourceType,
     loose,
     locations,
-    preserveParens,
+    parens,
     next,
     source,
   })
@@ -65,7 +55,7 @@ const getParseOpts = function({
   sourceType,
   loose,
   locations,
-  preserveParens,
+  parens,
   next,
   source,
 }) {
@@ -80,7 +70,7 @@ const getParseOpts = function({
     allowReserved: loose,
     locations,
     ranges: locations,
-    preserveParens,
+    preserveParens: parens,
     ...(next ? { ecmaVersion: 2020 } : {}),
     allowHashBang: true,
     sourceFile: source,

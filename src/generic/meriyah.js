@@ -2,14 +2,14 @@ import { parse as meriyahParse } from 'meriyah'
 
 const parse = function(
   code,
-  { sourceType, loose, strict, locations, preserveParens, next, jsx, source },
+  { sourceType, loose, strict, locations, parens, next, jsx, source },
 ) {
   const parseOpts = getParseOpts({
     sourceType,
     loose,
     strict,
     locations,
-    preserveParens,
+    parens,
     next,
     jsx,
     source,
@@ -31,7 +31,7 @@ const getParseOpts = function({
   loose,
   strict,
   locations,
-  preserveParens,
+  parens,
   next,
   jsx,
   source,
@@ -43,7 +43,7 @@ const getParseOpts = function({
     impliedStrict: strict,
     loc: locations,
     ranges: locations,
-    preserveParens,
+    preserveParens: parens,
     raw: true,
     directives: true,
     next,

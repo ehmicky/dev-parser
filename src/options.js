@@ -13,8 +13,7 @@ const DEFAULT_OPTS = {
   loose: false,
   strict: false,
   locations: false,
-  // TODO: rename to `parens`
-  preserveParens: false,
+  parens: false,
   // TODO: rename to `comments`
   comment: false,
   typescript: false,

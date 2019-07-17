@@ -2,14 +2,14 @@ import { parse as espreeParse } from 'espree'
 
 const parse = function(
   code,
-  { next, sourceType, loose, strict, locations, comments, tokens, jsx },
+  { legacy, sourceType, loose, strict, locations, comments, tokens, jsx },
 ) {
   return espreeParse(code, {
-    sourceType: next ? sourceType : 'script',
+    sourceType: legacy ? 'script' : sourceType,
     loc: locations,
     range: locations,
     comment: comments,
-    ...(next ? { ecmaVersion: 2019 } : {}),
+    ...(legacy ? {} : { ecmaVersion: 2019 }),
     ecmaFeatures: {
       globalReturn: loose,
       impliedStrict: strict,

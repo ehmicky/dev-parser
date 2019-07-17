@@ -8,7 +8,7 @@ const parse = function(
   plugins,
   code,
   {
-    next,
+    legacy,
     sourceType,
     loose,
     strict,
@@ -20,7 +20,7 @@ const parse = function(
     jsx,
   },
 ) {
-  const pluginsA = getPlugins({ plugins, typescript, flow, jsx, next })
+  const pluginsA = getPlugins({ plugins, typescript, flow, jsx, legacy })
 
   const node = babelParse(code, {
     sourceType,

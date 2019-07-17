@@ -1,10 +1,10 @@
-export const getPlugins = function({ plugins, typescript, flow, jsx, next }) {
+export const getPlugins = function({ plugins, typescript, flow, jsx, legacy }) {
   return [
     { names: plugins, enabled: true },
     { names: ['typescript'], enabled: typescript },
     { names: ['flow', 'flowComments'], enabled: flow },
     { names: ['jsx'], enabled: jsx },
-    { names: BABEL_NEXT_PLUGINS, enabled: next },
+    { names: BABEL_NEXT_PLUGINS, enabled: !legacy },
   ]
     .filter(isPluginEnabled)
     .flatMap(getPluginsNames)

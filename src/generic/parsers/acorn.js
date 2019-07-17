@@ -8,9 +8,19 @@ import { normalizeTokens } from '../tokens.js'
 
 const parse = function(
   code,
-  { next, sourceType, loose, locations, comments, tokens, parens, source, jsx },
+  {
+    legacy,
+    sourceType,
+    loose,
+    locations,
+    comments,
+    tokens,
+    parens,
+    source,
+    jsx,
+  },
 ) {
-  const acornParser = mAddPlugins(next, jsx)
+  const acornParser = mAddPlugins(legacy, jsx)
 
   const { allComments, allTokens, onceOpts } = getOnceState({
     comments,
@@ -29,7 +39,7 @@ const parse = function(
     locations,
     ranges: locations,
     preserveParens: parens,
-    ...(next ? { ecmaVersion: 2020 } : {}),
+    ...(legacy ? {} : { ecmaVersion: 2020 }),
     allowHashBang: true,
     sourceFile: source,
     ...onceOpts,
@@ -49,8 +59,11 @@ export const acorn = {
   parse,
 }
 
-const addPlugins = function(next, jsx) {
-  const plugins = [...(next ? [acornStage3] : []), ...(jsx ? [acornJsx()] : [])]
+const addPlugins = function(legacy, jsx) {
+  const plugins = [
+    ...(legacy ? [] : [acornStage3]),
+    ...(jsx ? [acornJsx()] : []),
+  ]
 
   if (plugins.length === 0) {
     return acornMain

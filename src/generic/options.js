@@ -6,7 +6,7 @@ export const getOpts = function(opts = {}) {
 }
 
 const DEFAULT_OPTS = {
-  next: true,
+  legacy: false,
   script: false,
   loose: false,
   strict: false,

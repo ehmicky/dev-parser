@@ -8,7 +8,7 @@ import { normalizeTokens } from './tokens.js'
 
 const parse = function(
   code,
-  { next, jsx, comments, tokens, sourceType, loose, locations, parens, source },
+  { next, sourceType, loose, locations, comments, tokens, parens, source, jsx },
 ) {
   const acornParser = mAddPlugins(next, jsx)
 

@@ -1,6 +1,6 @@
 import { parse as typescriptEstreeParse } from '@typescript-eslint/typescript-estree'
 
-const parse = function(code, { loose, locations, comments, jsx, tokens }) {
+const parse = function(code, { loose, locations, comments, tokens, jsx }) {
   try {
     return typescriptEstreeParse(code, {
       errorOnUnknownASTType: loose,

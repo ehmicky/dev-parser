@@ -8,9 +8,6 @@ const parse = function(
   plugins,
   code,
   {
-    typescript,
-    flow,
-    jsx,
     next,
     sourceType,
     loose,
@@ -18,6 +15,9 @@ const parse = function(
     locations,
     tokens,
     source,
+    typescript,
+    flow,
+    jsx,
   },
 ) {
   const pluginsA = getPlugins({ plugins, typescript, flow, jsx, next })

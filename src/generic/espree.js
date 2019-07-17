@@ -2,7 +2,7 @@ import { parse as espreeParse } from 'espree'
 
 const parse = function(
   code,
-  { next, sourceType, locations, comments, loose, strict, jsx, tokens },
+  { next, sourceType, loose, strict, locations, comments, tokens, jsx },
 ) {
   return espreeParse(code, {
     sourceType: next ? sourceType : 'script',

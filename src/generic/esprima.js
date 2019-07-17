@@ -2,7 +2,7 @@ import { parse as esprimaParse } from 'esprima'
 
 const parse = function(
   code,
-  { sourceType, loose, locations, comments, jsx, tokens },
+  { sourceType, loose, locations, comments, tokens, jsx },
 ) {
   return esprimaParse(code, {
     sourceType,

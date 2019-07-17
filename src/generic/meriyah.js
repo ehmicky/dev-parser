@@ -2,7 +2,7 @@ import { parse as meriyahParse } from 'meriyah'
 
 const parse = function(
   code,
-  { sourceType, loose, strict, locations, parens, next, jsx, source },
+  { next, sourceType, loose, strict, locations, parens, source, jsx },
 ) {
   return meriyahParse(code, {
     module: sourceType === 'module',

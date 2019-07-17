@@ -1,16 +1,4 @@
-export const removeAttrs = function(node, { locations, comments }) {
-  const attrs = getAttrs({ locations, comments })
-
-  if (attrs.length === 0) {
-    return node
-  }
-
-  return Object.fromEntries(
-    Object.entries(node).filter(([attr]) => !attrs.includes(attr)),
-  )
-}
-
-const getAttrs = function({ locations, comments }) {
+export const getRemovedAttrs = function({ locations, comments }) {
   return [
     ...(locations ? [] : LOCATION_ATTRS),
     ...(comments ? [] : COMMENT_ATTRS),
@@ -24,3 +12,13 @@ const COMMENT_ATTRS = [
   'leadingComments',
   'trailingComments',
 ]
+
+export const removeAttrs = function(node, removedAttrs) {
+  if (removedAttrs.length === 0) {
+    return node
+  }
+
+  return Object.fromEntries(
+    Object.entries(node).filter(([attr]) => !removedAttrs.includes(attr)),
+  )
+}

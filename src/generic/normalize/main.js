@@ -1,5 +1,5 @@
 import { traverse } from './traverse.js'
-import { removeAttrs } from './attributes.js'
+import { getRemovedAttrs, removeAttrs } from './attributes.js'
 import { sortKeys } from './sort.js'
 
 export const normalizeNode = function(
@@ -8,7 +8,13 @@ export const normalizeNode = function(
 ) {
   const nodeA = getTopNode(node, top)
 
-  return traverse(nodeA, normalize.bind(null, { locations, comments, sort }))
+  const removedAttrs = getRemovedAttrs({ locations, comments })
+
+  if (!sort && removedAttrs.length === 0) {
+    return nodeA
+  }
+
+  return traverse(nodeA, normalize.bind(null, { removedAttrs, sort }))
 }
 
 const getTopNode = function(node, top) {
@@ -23,8 +29,8 @@ const getTopNode = function(node, top) {
   return node.body
 }
 
-const normalize = function({ locations, comments, sort }, node) {
-  const nodeA = removeAttrs(node, { locations, comments })
+const normalize = function({ removedAttrs, sort }, node) {
+  const nodeA = removeAttrs(node, removedAttrs)
   const nodeB = sortKeys(nodeA, { sort })
   return nodeB
 }

@@ -1,11 +1,10 @@
 import { parsers } from './generic/main.js'
-import { normalizeNode } from './normalize/main.js'
 
-export const callParsers = function({ code, allowedParsers, top, parserOpts }) {
+export const callParsers = function({ code, allowedParsers, parserOpts }) {
   return Object.values(parsers)
     .filter(parser => isAllowed(parser, allowedParsers))
     .filter(parser => supportsSyntaxes(parser, parserOpts))
-    .map(parser => callParser({ parser, code, top, parserOpts }))
+    .map(parser => callParser({ parser, code, parserOpts }))
 }
 
 const isAllowed = function({ id }, allowedParsers) {
@@ -19,17 +18,10 @@ const supportsSyntaxes = function(parser, { typescript, flow, jsx }) {
   )
 }
 
-const callParser = function({
-  parser: { title, parse },
-  code,
-  top,
-  parserOpts,
-  parserOpts: { locations, comments },
-}) {
+const callParser = function({ parser: { title, parse }, code, parserOpts }) {
   try {
     const node = parse(code, parserOpts)
-    const nodeA = normalizeNode(node, { top, locations, comments })
-    return { title, node: nodeA }
+    return { title, node }
   } catch (error) {
     return { title, error }
   }

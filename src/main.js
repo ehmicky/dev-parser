@@ -7,9 +7,9 @@ import { callParsers } from './parse.js'
 import { serialize } from './serialize/main.js'
 
 const parseAll = function(code, opts) {
-  const { allowedParsers, top, parserOpts } = getOpts(opts)
+  const { allowedParsers, parserOpts } = getOpts(opts)
 
-  const results = callParsers({ code, allowedParsers, top, parserOpts })
+  const results = callParsers({ code, allowedParsers, parserOpts })
 
   const output = serialize(results)
   // eslint-disable-next-line no-restricted-globals, no-console

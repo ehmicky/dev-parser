@@ -1,17 +1,18 @@
 export const getOpts = function(opts = {}) {
   const optsA = { ...DEFAULT_OPTS, ...opts }
   const optsB = setForcedOpts({ opts: optsA })
-  const { parsers, top, ...parserOpts } = addSourceType(optsB)
-  return { allowedParsers: parsers, top, parserOpts }
+  const optsC = addSourceType(optsB)
+
+  const { parsers: allowedParsers, ...parserOpts } = optsC
+  return { allowedParsers, parserOpts }
 }
 
 const DEFAULT_OPTS = {
-  top: false,
-
   next: true,
   script: false,
   loose: false,
   strict: false,
+  top: false,
   locations: false,
   comments: false,
   tokens: false,

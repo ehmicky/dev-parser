@@ -4,8 +4,13 @@ import { espree } from './espree.js'
 import { typescriptEstree } from './typescript_estree.js'
 import { meriyah } from './meriyah.js'
 import { babel, babelEstree } from './babel/main.js'
+import { normalizeNode } from './normalize/main.js'
 
-export const parsers = {
+const getParsers = function() {
+  return Object.fromEntries(PARSERS.map(getParser))
+}
+
+const PARSERS = [
   esprima,
   acorn,
   espree,
@@ -13,4 +18,16 @@ export const parsers = {
   meriyah,
   babel,
   babelEstree,
+]
+
+const getParser = function({ id, parse, ...parser }) {
+  return [id, { id, ...parser, parse: wrappedParse.bind(null, parse) }]
 }
+
+const wrappedParse = function(parse, code, parserOpts) {
+  const node = parse(code, parserOpts)
+  const nodeA = normalizeNode(node, parserOpts)
+  return nodeA
+}
+
+export const parsers = getParsers()

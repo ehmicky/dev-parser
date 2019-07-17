@@ -21,10 +21,10 @@ const PARSERS = [
 ]
 
 const getParser = function({ id, parse, ...parser }) {
-  return [id, { id, ...parser, parse: wrappedParse.bind(null, parse) }]
+  return [id, { id, ...parser, parse: parseCode.bind(null, parse) }]
 }
 
-const wrappedParse = function(parse, code, parserOpts) {
+const parseCode = function(parse, code, parserOpts) {
   const node = parse(code, parserOpts)
   const nodeA = normalizeNode(node, parserOpts)
   return nodeA

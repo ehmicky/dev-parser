@@ -1,4 +1,4 @@
-import { LOCATION_ATTRS } from './locations.js'
+import { LOCATION_ATTRS } from './attributes.js'
 
 export const sortKeys = function(node) {
   return sortObject(node, keysComparator)

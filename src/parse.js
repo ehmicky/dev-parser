@@ -24,11 +24,11 @@ const callParser = function({
   code,
   top,
   parserOpts,
-  parserOpts: { locations },
+  parserOpts: { locations, comments },
 }) {
   try {
     const node = parse(code, parserOpts)
-    const nodeA = normalizeNode(node, { top, locations })
+    const nodeA = normalizeNode(node, { top, locations, comments })
     return { title, node: nodeA }
   } catch (error) {
     return { title, error }

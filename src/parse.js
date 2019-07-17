@@ -25,7 +25,7 @@ const supportsSyntaxes = function(parser, { typescript, flow, jsx }) {
 }
 
 const callParser = function({
-  parser: { name, parse },
+  parser: { title, parse },
   code,
   top,
   parserOpts,
@@ -34,8 +34,8 @@ const callParser = function({
   try {
     const node = parse(code, parserOpts)
     const nodeA = normalizeNode(node, { top, locations })
-    return { name, node: nodeA }
+    return { title, node: nodeA }
   } catch (error) {
-    return { name, error }
+    return { title, error }
   }
 }

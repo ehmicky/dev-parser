@@ -15,13 +15,13 @@ const parse = function(
     tokens,
   })
 
-  const result = espreeParse(code, parseOpts)
-  return result
+  const node = espreeParse(code, parseOpts)
+  return node
 }
 
 export const espree = {
   id: 'espree',
-  name: 'Espree',
+  title: 'Espree',
   syntaxes: ['jsx'],
   parse,
 }

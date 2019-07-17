@@ -32,10 +32,10 @@ const parse = function(
 
   const { comments, tokenObjects, onceOpts } = getOnceState({ comment, tokens })
 
-  const result = acornParser.parse(code, { ...parseOpts, ...onceOpts })
+  const node = acornParser.parse(code, { ...parseOpts, ...onceOpts })
 
   return {
-    ...result,
+    ...node,
     ...addComments(comments),
     ...normalizeTokens('onToken', tokenObjects),
   }
@@ -43,7 +43,7 @@ const parse = function(
 
 export const acorn = {
   id: 'acorn',
-  name: 'Acorn',
+  title: 'Acorn',
   syntaxes: ['jsx'],
   parse,
 }

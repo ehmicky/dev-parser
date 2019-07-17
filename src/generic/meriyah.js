@@ -15,13 +15,13 @@ const parse = function(
     source,
   })
 
-  const result = meriyahParse(code, parseOpts)
-  return result
+  const node = meriyahParse(code, parseOpts)
+  return node
 }
 
 export const meriyah = {
   id: 'meriyah',
-  name: 'Meriyah',
+  title: 'Meriyah',
   syntaxes: ['jsx'],
   parse,
 }

@@ -10,8 +10,8 @@ const parse = function(code, { lenient, locations, comment, jsx, tokens }) {
   })
 
   try {
-    const result = typescriptEstreeParse(code, parseOpts)
-    return result
+    const node = typescriptEstreeParse(code, parseOpts)
+    return node
   } catch (error) {
     throw normalizeError(error)
   }
@@ -19,7 +19,7 @@ const parse = function(code, { lenient, locations, comment, jsx, tokens }) {
 
 export const typescriptEstree = {
   id: 'typescriptEstree',
-  name: 'TypeScript-ESTree',
+  title: 'TypeScript-ESTree',
   syntaxes: ['typescript', 'jsx'],
   parse,
 }

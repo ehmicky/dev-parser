@@ -33,21 +33,21 @@ const parse = function(
     source,
   })
 
-  const result = babelParse(code, parseOpts)
+  const node = babelParse(code, parseOpts)
 
-  return { ...result, ...normalizeTokens('tokens', result.tokens) }
+  return { ...node, ...normalizeTokens('tokens', node.tokens) }
 }
 
 export const babel = {
   id: 'babel',
-  name: 'Babel',
+  title: 'Babel',
   syntaxes: ['typescript', 'flow', 'jsx'],
   parse: parse.bind(null, []),
 }
 
 export const babelEstree = {
   id: 'babelEstree',
-  name: 'Babel-ESTree',
+  title: 'Babel-ESTree',
   syntaxes: ['typescript', 'flow', 'jsx'],
   parse: parse.bind(null, ['estree']),
 }

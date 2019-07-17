@@ -13,13 +13,13 @@ const parse = function(
     tokens,
   })
 
-  const result = esprimaParse(code, parseOpts)
-  return result
+  const node = esprimaParse(code, parseOpts)
+  return node
 }
 
 export const esprima = {
   id: 'esprima',
-  name: 'Esprima',
+  title: 'Esprima',
   syntaxes: ['jsx'],
   parse,
 }

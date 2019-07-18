@@ -2,7 +2,7 @@
 
 import { argv } from 'process'
 
-import { callParsers } from './parse.js'
+import { getParsers, callParsers } from './parse.js'
 import { serialize } from './serialize/main.js'
 
 // Parse JavaScript code with several parsers and print the produced AST on
@@ -11,7 +11,9 @@ const parseAll = function(
   code,
   { parsers: allowedParsers, colors, ...parserOpts } = {},
 ) {
-  const results = callParsers({ code, allowedParsers, parserOpts })
+  const parsers = getParsers({ allowedParsers, parserOpts })
+
+  const results = callParsers({ parsers, code, parserOpts })
 
   const output = serialize(results, { colors })
   // eslint-disable-next-line no-restricted-globals, no-console

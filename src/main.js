@@ -7,17 +7,19 @@ import { printResults } from './print/main.js'
 
 // Parse JavaScript code with several parsers and print the produced AST on
 // the console
-const parse = function(
+export const print = function(code, { colors, ...opts } = {}) {
+  const results = parse(code, opts)
+  printResults(results, { colors })
+}
+
+// Parse JavaScript code with several parsers
+export const parse = function(
   code,
-  { parsers: allowedParsers, colors, print = false, ...parserOpts } = {},
+  { parsers: allowedParsers, ...parserOpts } = {},
 ) {
   const parsers = getParsers({ allowedParsers, parserOpts })
-
   const results = callParsers({ parsers, code, parserOpts })
-
-  printResults(results, { colors, print })
-
   return results
 }
 
-parse(argv[2], { print: true })
+print(argv[2], {})

@@ -1,11 +1,7 @@
 import { getChalk } from './colors.js'
 import { serializeNode } from './node.js'
 
-export const printResults = function(results, { colors, print }) {
-  if (!print) {
-    return
-  }
-
+export const printResults = function(results, { colors }) {
   const output = serialize(results, { colors })
 
   // eslint-disable-next-line no-restricted-globals, no-console

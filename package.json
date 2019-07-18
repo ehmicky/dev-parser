@@ -1,5 +1,5 @@
 {
-  "name": "devparse",
+  "name": "dev-parser",
   "version": "0.0.1",
   "main": "build/src/main.js",
   "files": [
@@ -18,9 +18,9 @@
   "keywords": [],
   "license": "Apache-2.0",
   "homepage": "https://git.io/fj1c0",
-  "repository": "ehmicky/devparse",
+  "repository": "ehmicky/dev-parser",
   "bugs": {
-    "url": "https://github.com/ehmicky/devparse/issues"
+    "url": "https://github.com/ehmicky/dev-parser/issues"
   },
   "author": "ehmicky <ehmicky@gmail.com> (https://github.com/ehmicky)",
   "directories": {

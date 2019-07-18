@@ -1,9 +1,11 @@
 import { start, Recoverable } from 'repl'
 
-import { compute } from '../print/main.js'
+import { parse } from '../parse.js'
+import { serialize } from '../print/main.js'
 
 import { getPrompt } from './prompt.js'
 import { isMultiline, handleMultiline } from './multiline.js'
+import { defineCommands } from './commands/main.js'
 import { DEFAULT_HISTORY, setupHistory } from './history.js'
 
 // Starts a REPL that parses JavaScript code as input and prints their AST
@@ -12,26 +14,19 @@ export const repl = async function({
   ...opts
 } = {}) {
   const replServer = start({
-    ...REPL_OPTS,
     prompt: getPrompt(opts),
     eval: evalCode.bind(null, opts),
+    writer: serializeCode.bind(null, opts),
+    ignoreUndefined: true,
+    // Like Node REPL
+    historySize: 1e3,
   })
+
+  defineCommands(replServer, opts)
 
   await setupHistory(replServer, history)
 
   return replServer
-}
-
-// We already serialized output
-const writer = function(output) {
-  return output
-}
-
-const REPL_OPTS = {
-  writer,
-  ignoreUndefined: true,
-  // Like Node REPL
-  historySize: 1e3,
 }
 
 // eslint-disable-next-line max-params
@@ -50,9 +45,15 @@ const evalCode = function(opts, code, context, filename, func) {
 
   const codeB = handleMultiline(codeA)
 
-  // Parse JavaScript code to AST and serialize it
-  const output = compute(codeB, opts)
-  const outputA = `\n${output}\n`
+  // Parse JavaScript code to AST nodes
+  const results = parse(codeB, opts)
 
-  func(null, outputA)
+  func(null, results)
+}
+
+// Serialize AST resuls
+const serializeCode = function(opts, results) {
+  const output = serialize(results, opts)
+  const outputA = `\n${output}\n`
+  return outputA
 }

@@ -5,20 +5,15 @@ import { serializeNode } from './node.js'
 
 // Parse JavaScript code with several parsers and print the produced AST on
 // the console
-export const print = function(code, opts = {}) {
-  const output = compute(code, opts)
+export const print = function(code, { colors, ...opts } = {}) {
+  const results = parse(code, opts)
+  const output = serialize(results, { colors })
   // eslint-disable-next-line no-restricted-globals, no-console
   console.log(output)
 }
 
-export const compute = function(code, { colors, ...opts }) {
-  const results = parse(code, opts)
-  const output = serialize(results, { colors })
-  return output
-}
-
 // Serialize AST nodes so they can be printed on the console
-const serialize = function(results, { colors }) {
+export const serialize = function(results, { colors }) {
   const showHeader = results.length !== 1
   const chalk = getChalk(colors)
 

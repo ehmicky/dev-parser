@@ -1,7 +1,17 @@
 import { abstractParser } from './abstract_parser/main.js'
 
+// Parse JavaScript code with several parsers
+export const parse = function(
+  code,
+  { parsers: allowedParsers, ...parserOpts } = {},
+) {
+  const parsers = getParsers({ allowedParsers, parserOpts })
+  const results = callParsers({ parsers, code, parserOpts })
+  return results
+}
+
 // Retrieve all JavaScript parsers to be used
-export const getParsers = function({ allowedParsers, parserOpts }) {
+const getParsers = function({ allowedParsers, parserOpts }) {
   return Object.values(abstractParser)
     .filter(parser => isAllowed(parser, allowedParsers))
     .filter(parser => supportsSyntaxes(parser, parserOpts))
@@ -22,13 +32,17 @@ const supportsSyntaxes = function(parser, { typescript, flow, jsx }) {
 }
 
 // Parse JavaScript code with several parsers
-export const callParsers = function({ parsers, code, parserOpts }) {
+const callParsers = function({ parsers, code, parserOpts }) {
   return parsers.map(parser => callParser({ parser, code, parserOpts }))
 }
 
-const callParser = function({ parser: { title, parse }, code, parserOpts }) {
+const callParser = function({
+  parser: { title, parse: parseCode },
+  code,
+  parserOpts,
+}) {
   try {
-    const node = parse(code, { ...parserOpts, sort: true })
+    const node = parseCode(code, { ...parserOpts, sort: true })
     return { title, node }
   } catch (error) {
     return { title, error }

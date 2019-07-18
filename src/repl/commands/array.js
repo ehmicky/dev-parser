@@ -1,37 +1,37 @@
 export const ARRAY_COMMANDS = [
   {
     attr: 'parsers',
-    value: 'acorn',
+    name: 'acorn',
     help: 'Toggle whether Acorn should be used for parsing',
   },
   {
     attr: 'parsers',
-    value: 'babel',
+    name: 'babel',
     help: 'Toggle whether Babel should be used for parsing',
   },
   {
     attr: 'parsers',
-    value: 'babelEstree',
+    name: 'babelEstree',
     help: 'Toggle whether Babel-ESTree should be used for parsing',
   },
   {
     attr: 'parsers',
-    value: 'espree',
+    name: 'espree',
     help: 'Toggle whether Espree should be used for parsing',
   },
   {
     attr: 'parsers',
-    value: 'esprima',
+    name: 'esprima',
     help: 'Toggle whether Esprima should be used for parsing',
   },
   {
     attr: 'parsers',
-    value: 'meriyah',
+    name: 'meriyah',
     help: 'Toggle whether Meriyah should be used for parsing',
   },
   {
     attr: 'parsers',
-    value: 'typescriptEstree',
+    name: 'typescriptEstree',
     help: 'Toggle whether TypeScript-ESTree should be used for parsing',
   },
 ]

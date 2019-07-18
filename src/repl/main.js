@@ -13,20 +13,28 @@ export const repl = async function({
   history = DEFAULT_HISTORY,
   ...opts
 } = {}) {
+  const optsA = { ...DEFAULT_OPTS, ...opts }
+
   const replServer = start({
-    prompt: getPrompt(opts),
-    eval: evalCode.bind(null, opts),
-    writer: serializeCode.bind(null, opts),
+    prompt: getPrompt(optsA),
+    eval: evalCode.bind(null, optsA),
+    writer: serializeCode.bind(null, optsA),
     ignoreUndefined: true,
     // Like Node REPL
     historySize: 1e3,
   })
 
-  defineCommands(replServer, opts)
+  defineCommands(replServer, optsA)
 
   await setupHistory(replServer, history)
 
   return replServer
+}
+
+// Since we mutate options, we need to assign default values first.
+// However we don't need to do this for faulty default values.
+const DEFAULT_OPTS = {
+  parsers: ['babel'],
 }
 
 // eslint-disable-next-line max-params

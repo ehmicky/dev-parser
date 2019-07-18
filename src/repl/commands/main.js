@@ -4,31 +4,51 @@ import { BOOLEAN_COMMANDS } from './boolean.js'
 // Define REPL commands starting with dots.
 // They are used to modify the current options.
 export const defineCommands = function(replServer, opts) {
-  ARRAY_COMMANDS.forEach(({ attr, value, help }) =>
-    defineArray({ replServer, opts, attr, value, help }),
-  )
+  defineGroup({ replServer, opts, commands: ARRAY_COMMANDS }, defineArray)
+  defineGroup({ replServer, opts, commands: BOOLEAN_COMMANDS }, defineBoolean)
+}
 
-  BOOLEAN_COMMANDS.forEach(({ attr, help }) =>
-    defineBoolean({ replServer, opts, attr, help }),
+const defineGroup = function({ replServer, opts, commands }, defineFunc) {
+  commands.forEach(({ attr, name, help }) =>
+    defineCommand({ replServer, opts, attr, name, help }, defineFunc),
   )
 }
 
-const defineArray = function({ replServer, opts, attr, value, help }) {}
-
-// This only works when the boolean option default to `false` since we perform
-// this before applying defaults
-const defineBoolean = function({ replServer, opts, attr, help }) {
-  replServer.defineCommand(attr, {
+const defineCommand = function({ replServer, opts, attr, name, help }, action) {
+  replServer.defineCommand(name, {
     action() {
       // eslint-disable-next-line fp/no-this
       this.clearBufferedCommand()
-      // eslint-disable-next-line no-param-reassign, fp/no-mutation
-      opts[attr] = !opts[attr]
-      // eslint-disable-next-line no-console, no-restricted-globals
-      console.log(`Option '${attr}' -> ${opts[attr]}`)
+
+      action({ opts, attr, name })
+
       // eslint-disable-next-line fp/no-this
       this.displayPrompt(true)
     },
     help,
   })
+}
+
+const defineArray = function({ opts, attr, name }) {
+  // eslint-disable-next-line no-param-reassign, fp/no-mutation
+  opts[attr] = getArrayValues({ opts, attr, name })
+
+  // eslint-disable-next-line no-console, no-restricted-globals
+  console.log(`Option '${attr}' -> [${opts[attr].join(', ')}]`)
+}
+
+const getArrayValues = function({ opts, attr, name }) {
+  if (opts[attr].includes(name)) {
+    return opts[attr].filter(nameA => nameA !== name)
+  }
+
+  return [...opts[attr], name]
+}
+
+const defineBoolean = function({ opts, name }) {
+  // eslint-disable-next-line no-param-reassign, fp/no-mutation
+  opts[name] = !opts[name]
+
+  // eslint-disable-next-line no-console, no-restricted-globals
+  console.log(`Option '${name}' -> ${opts[name]}`)
 }

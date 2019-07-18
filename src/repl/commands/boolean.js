@@ -1,50 +1,50 @@
 export const BOOLEAN_COMMANDS = [
   {
-    attr: 'legacy',
+    name: 'legacy',
     help: "Toggle option 'legacy': reject recent JavaScript features",
   },
   {
-    attr: 'script',
+    name: 'script',
     help: "Toggle option 'script': do not use ES modules syntax",
   },
   {
-    attr: 'loose',
+    name: 'loose',
     help: "Toggle option 'loose': allow code to contain small mistakes",
   },
   {
-    attr: 'strict',
+    name: 'strict',
     help: "Toggle option 'strict': use strict mode",
   },
   {
-    attr: 'top',
+    name: 'top',
     help: "Toggle option 'top': show top-level AST node",
   },
   {
-    attr: 'locations',
+    name: 'locations',
     help: "Toggle option 'locations': show AST nodes locations",
   },
   {
-    attr: 'comments',
+    name: 'comments',
     help: "Toggle option 'comments': show AST nodes for comments",
   },
   {
-    attr: 'tokens',
+    name: 'tokens',
     help: "Toggle option 'tokens': show low-level tokens",
   },
   {
-    attr: 'parens',
+    name: 'parens',
     help: "Toggle option 'parens': show AST nodes for parenthesized expresions",
   },
   {
-    attr: 'typescript',
+    name: 'typescript',
     help: "Toggle option 'typescript': allow TypeScript",
   },
   {
-    attr: 'flow',
+    name: 'flow',
     help: "Toggle option 'flow': allow Flow",
   },
   {
-    attr: 'jsx',
+    name: 'jsx',
     help: "Toggle option 'jsx': allow JSX",
   },
 ]

@@ -1,8 +1,19 @@
 import { getChalk } from './colors.js'
 import { serializeNode } from './node.js'
 
+export const printResults = function(results, { colors, print }) {
+  if (!print) {
+    return
+  }
+
+  const output = serialize(results, { colors })
+
+  // eslint-disable-next-line no-restricted-globals, no-console
+  console.log(output)
+}
+
 // Serialize AST nodes so they can be printed on the console
-export const serialize = function(results, { colors }) {
+const serialize = function(results, { colors }) {
   const showHeader = results.length !== 1
   const chalk = getChalk(colors)
 

@@ -20,4 +20,4 @@ const parseCode = function(parse, code, opts) {
   return nodeA
 }
 
-export const parsers = getParsers()
+export const abstractParser = getParsers()

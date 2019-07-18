@@ -1,8 +1,8 @@
-import { parsers } from './generic/main.js'
+import { abstractParser } from './abstract_parser/main.js'
 
 // Parse JavaScript code with several parsers
 export const callParsers = function({ code, allowedParsers, parserOpts }) {
-  return Object.values(parsers)
+  return Object.values(abstractParser)
     .filter(parser => isAllowed(parser, allowedParsers))
     .filter(parser => supportsSyntaxes(parser, parserOpts))
     .map(parser => callParser({ parser, code, parserOpts }))

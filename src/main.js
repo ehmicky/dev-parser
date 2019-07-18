@@ -2,4 +2,4 @@
 
 export { parse } from './parse.js'
 export { print } from './print/main.js'
-export { repl } from './repl.js'
+export { repl } from './repl/main.js'

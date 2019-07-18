@@ -1,9 +1,10 @@
 import { start, Recoverable } from 'repl'
-import { homedir } from 'os'
-import { promisify } from 'util'
 
-import { compute } from './print/main.js'
-import { getChalk } from './print/colors.js'
+import { compute } from '../print/main.js'
+
+import { getPrompt } from './prompt.js'
+import { isMultiline, handleMultiline } from './multiline.js'
+import { DEFAULT_HISTORY, setupHistory } from './history.js'
 
 // Starts a REPL that parses JavaScript code as input and prints their AST
 export const repl = async function({
@@ -33,18 +34,6 @@ const REPL_OPTS = {
   historySize: 1e3,
 }
 
-const getPrompt = function({ colors }) {
-  const chalk = getChalk(colors)
-
-  if (chalk === undefined) {
-    return PROMPT
-  }
-
-  return chalk.yellow.bold(PROMPT)
-}
-
-const PROMPT = '==> '
-
 // eslint-disable-next-line max-params
 const evalCode = function(opts, code, context, filename, func) {
   // Entering nothing should be noop
@@ -67,28 +56,3 @@ const evalCode = function(opts, code, context, filename, func) {
 
   func(null, outputA)
 }
-
-// Can do multiline input by ending lines with a backslash
-const isMultiline = function(command) {
-  return command[command.length - 1] === '\\'
-}
-
-const handleMultiline = function(command) {
-  return command.replace(MULTILINE_REGEXP, '')
-}
-
-const MULTILINE_REGEXP = /\\\s*$/gmu
-
-const setupHistory = async function(replServer, history) {
-  // Like Node REPL
-  // eslint-disable-next-line fp/no-mutation, no-param-reassign
-  replServer.removeHistoryDuplicates = true
-
-  if (!history) {
-    return
-  }
-
-  await promisify(replServer.setupHistory.bind(replServer))(history)
-}
-
-const DEFAULT_HISTORY = `${homedir}/.dev_parser_repl_history`

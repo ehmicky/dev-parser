@@ -7,6 +7,12 @@ import { serializeNode } from './node.js'
 // the console
 export const print = function(code, { colors, ...opts } = {}) {
   const results = parse(code, opts)
+
+  // When there are no `parsers`
+  if (results.length === 0) {
+    return
+  }
+
   const output = serialize(results, { colors })
   // eslint-disable-next-line no-restricted-globals, no-console
   console.log(output)
@@ -17,9 +23,10 @@ export const serialize = function(results, { colors }) {
   const showHeader = results.length !== 1
   const chalk = getChalk(colors)
 
-  return results
+  const output = results
     .map(result => serializeResult(result, { showHeader, chalk }))
     .join('\n\n')
+  return `\n${output}\n`
 }
 
 const serializeResult = function(

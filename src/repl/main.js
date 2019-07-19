@@ -66,7 +66,5 @@ const evalCode = function(opts, code, context, filename, func) {
 
 // Serialize AST resuls
 const serializeCode = function(opts, results) {
-  const output = serialize(results, opts)
-  const outputA = `\n${output}\n`
-  return outputA
+  return serialize(results, opts)
 }

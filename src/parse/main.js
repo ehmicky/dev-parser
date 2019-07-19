@@ -1,4 +1,4 @@
-import { abstractParser } from '../abstract_parser/main.js'
+import abstractParser from 'abstract-parser'
 
 import { getOpts } from './options.js'
 

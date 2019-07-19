@@ -1,8 +1,9 @@
-import { abstractParser } from '../abstract_parser/main.js'
+import abstractParser from 'abstract-parser'
 import {
   DEFAULT_OPTS as abstractDefaultOpts,
   EXAMPLE_OPTS as abstractExampleOpts,
-} from '../abstract_parser/options.js'
+} from 'abstract-parser/options.js'
+
 import { handleOpts } from '../options.js'
 
 // Normalize options and assign default values

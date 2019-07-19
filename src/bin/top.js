@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import yargs from 'yargs'
 
 export const defineCli = function() {
@@ -124,3 +125,4 @@ name. For example:
 
 const REPL_EXAMPLE = '$0'
 const PRINT_EXAMPLE = "$0 '1 + 1'"
+/* eslint-enable max-lines */

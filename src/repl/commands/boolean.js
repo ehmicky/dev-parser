@@ -1,4 +1,13 @@
-export const BOOLEAN_COMMANDS = [
+// Boolean attributes are toggled by their REPL command
+const action = function({ opts, name }) {
+  // eslint-disable-next-line no-param-reassign, fp/no-mutation
+  opts[name] = !opts[name]
+
+  // eslint-disable-next-line no-console, no-restricted-globals
+  console.log(`Option '${name}' -> ${opts[name]}`)
+}
+
+const commands = [
   {
     name: 'legacy',
     help: "Toggle option 'legacy': reject recent JavaScript features",
@@ -48,3 +57,5 @@ export const BOOLEAN_COMMANDS = [
     help: "Toggle option 'jsx': allow JSX",
   },
 ]
+
+export const BOOLEAN_GROUP = { action, commands }

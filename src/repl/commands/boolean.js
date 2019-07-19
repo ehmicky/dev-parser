@@ -18,7 +18,7 @@ const commands = [
   },
   {
     name: 'loose',
-    help: "Toggle option 'loose': allow code to contain small mistakes",
+    help: "Toggle option 'loose': allow small mistakes in code",
   },
   {
     name: 'strict',

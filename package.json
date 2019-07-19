@@ -6,6 +6,9 @@
     "build/src",
     "!~"
   ],
+  "bin": {
+    "dev-parser": "build/src/bin/main.js"
+  },
   "scripts": {
     "test": "gulp test"
   },
@@ -41,7 +44,8 @@
     "meriyah": "^1.3.5",
     "moize": "^5.4.4",
     "supports-color": "^7.0.0",
-    "typescript": "^3.5.3"
+    "typescript": "^3.5.3",
+    "yargs": "^13.3.0"
   },
   "devDependencies": {
     "ava": "^2.2.0",

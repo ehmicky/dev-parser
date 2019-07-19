@@ -1,18 +1,10 @@
 // Array attributes have one REPL command per value, which toggles that value
 const action = function({ parseOpts, attr, name }) {
   // eslint-disable-next-line no-param-reassign, fp/no-mutation
-  parseOpts[attr] = toggleValue({ parseOpts, attr, name })
+  parseOpts[attr] = [name]
 
   // eslint-disable-next-line no-console, no-restricted-globals
-  console.log(`Option '${attr}' -> [${parseOpts[attr].join(', ')}]`)
-}
-
-const toggleValue = function({ parseOpts, attr, name }) {
-  if (parseOpts[attr].includes(name)) {
-    return parseOpts[attr].filter(nameA => nameA !== name)
-  }
-
-  return [...parseOpts[attr], name]
+  console.log(`Option '${attr}' -> ${name}`)
 }
 
 const commands = [

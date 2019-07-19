@@ -9,8 +9,8 @@ export const PARSERS = [
   esprima,
   acorn,
   espree,
-  typescriptEstree,
   meriyah,
-  babel,
+  typescriptEstree,
   babelEstree,
+  babel,
 ]

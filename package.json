@@ -14,7 +14,7 @@
       "pre-push": "gulp check --full"
     }
   },
-  "description": "Parse JavaScript from a terminal",
+  "description": "Parse JavaScript using a terminal",
   "keywords": [],
   "license": "Apache-2.0",
   "homepage": "https://git.io/fj1c0",

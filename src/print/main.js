@@ -1,12 +1,15 @@
-import { parse } from '../parse.js'
+import { parse } from '../parse/main.js'
 
+import { getOpts } from './options.js'
 import { getChalk } from './colors.js'
 import { serializeNode } from './node.js'
 
 // Parse JavaScript code with several parsers and print the produced AST on
 // the console
-export const print = function(code, { colors, ...opts } = {}) {
-  const results = parse(code, opts)
+export const print = function(code, opts) {
+  const { colors, parseOpts } = getOpts(opts)
+
+  const results = parse(code, parseOpts)
 
   // When there are no `parsers`
   if (results.length === 0) {

@@ -1,10 +1,10 @@
 // Boolean attributes are toggled by their REPL command
-const action = function({ opts, name }) {
+const action = function({ parseOpts, name }) {
   // eslint-disable-next-line no-param-reassign, fp/no-mutation
-  opts[name] = !opts[name]
+  parseOpts[name] = !parseOpts[name]
 
   // eslint-disable-next-line no-console, no-restricted-globals
-  console.log(`Option '${name}' -> ${opts[name]}`)
+  console.log(`Option '${name}' -> ${parseOpts[name]}`)
 }
 
 const commands = [

@@ -1,44 +1,36 @@
 import { start, Recoverable } from 'repl'
 
-import { parse } from '../parse.js'
+import { parse } from '../parse/main.js'
 import { serialize } from '../print/main.js'
 
+import { getOpts } from './options.js'
 import { getPrompt } from './prompt.js'
 import { isMultiline, handleMultiline } from './multiline.js'
 import { defineCommands } from './commands/main.js'
-import { DEFAULT_HISTORY, setupHistory } from './history.js'
+import { setupHistory } from './history.js'
 
 // Starts a REPL that parses JavaScript code as input and prints their AST
-export const repl = async function({
-  history = DEFAULT_HISTORY,
-  ...opts
-} = {}) {
-  const optsA = { ...DEFAULT_OPTS, ...opts }
+export const repl = async function(opts) {
+  const { history, parseOpts, serializeOpts } = getOpts(opts)
 
   const replServer = start({
-    prompt: getPrompt(optsA),
-    eval: evalCode.bind(null, optsA),
-    writer: serializeCode.bind(null, optsA),
+    prompt: getPrompt(serializeOpts),
+    eval: evalCode.bind(null, parseOpts),
+    writer: serializeCode.bind(null, serializeOpts),
     ignoreUndefined: true,
     // Like Node REPL
     historySize: 1e3,
   })
 
-  defineCommands(replServer, optsA)
+  defineCommands(replServer, parseOpts)
 
   await setupHistory(replServer, history)
 
   return replServer
 }
 
-// Since we mutate options, we need to assign default values first.
-// However we don't need to do this for faulty default values.
-const DEFAULT_OPTS = {
-  parsers: ['babel'],
-}
-
 // eslint-disable-next-line max-params
-const evalCode = function(opts, code, context, filename, func) {
+const evalCode = function(parseOpts, code, context, filename, func) {
   // Entering nothing should be noop
   if (code.trim() === '') {
     return func(null, undefined)
@@ -54,7 +46,7 @@ const evalCode = function(opts, code, context, filename, func) {
   const codeB = handleMultiline(codeA)
 
   // Parse JavaScript code to AST nodes
-  const results = parse(codeB, opts)
+  const results = parse(codeB, parseOpts)
 
   // When there are no `parsers`
   if (results.length === 0) {
@@ -65,6 +57,6 @@ const evalCode = function(opts, code, context, filename, func) {
 }
 
 // Serialize AST resuls
-const serializeCode = function(opts, results) {
-  return serialize(results, opts)
+const serializeCode = function(serializeOpts, results) {
+  return serialize(results, serializeOpts)
 }

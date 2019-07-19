@@ -1,10 +1,11 @@
-import { abstractParser } from './abstract_parser/main.js'
+import { abstractParser } from '../abstract_parser/main.js'
+
+import { getOpts } from './options.js'
 
 // Parse JavaScript code with several parsers
-export const parse = function(
-  code,
-  { parsers: allowedParsers, ...parserOpts } = {},
-) {
+export const parse = function(code, opts) {
+  const { allowedParsers, parserOpts } = getOpts(code, opts)
+
   const parsers = getParsers({ allowedParsers, parserOpts })
   const results = callParsers({ parsers, code, parserOpts })
   return results

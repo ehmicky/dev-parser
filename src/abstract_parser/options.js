@@ -1,12 +1,32 @@
+import { validate } from 'jest-validate'
+
+import { isPlainObject } from './utils.js'
+
 // Normalize options and assign default values
-export const getOpts = function(opts = {}) {
+export const getOpts = function(code, opts = {}) {
+  validateBasic(code, opts)
+
+  validate(opts, { exampleConfig: EXAMPLE_OPTS })
+
   const optsA = { ...DEFAULT_OPTS, ...opts }
+
   const optsB = setForcedOpts({ opts: optsA })
   const optsC = addSourceType(optsB)
   return optsC
 }
 
-const DEFAULT_OPTS = {
+const validateBasic = function(code, opts) {
+  if (typeof code !== 'string') {
+    throw new TypeError(`Code must be a string: ${code}`)
+  }
+
+  if (!isPlainObject(opts)) {
+    throw new TypeError(`Options must be a plain object: ${opts}`)
+  }
+}
+
+// This is exported so that `dev-parser` package can use it
+export const DEFAULT_OPTS = {
   legacy: false,
   script: false,
   loose: false,
@@ -17,10 +37,14 @@ const DEFAULT_OPTS = {
   comments: false,
   tokens: false,
   parens: false,
-
   typescript: false,
   flow: false,
   jsx: false,
+}
+
+export const EXAMPLE_OPTS = {
+  ...DEFAULT_OPTS,
+  source: 'filename.js',
 }
 
 const setForcedOpts = function({

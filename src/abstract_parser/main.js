@@ -14,7 +14,7 @@ const getParser = function({ id, parse, ...parser }) {
 // Main `parse()` function of each parser.
 // We wrap the `parse()` function provided by the parser.
 const parseCode = function(parse, code, opts) {
-  const optsA = getOpts(opts)
+  const optsA = getOpts(code, opts)
   const node = parse(code, optsA)
   const nodeA = normalizeNode(node, optsA)
   return nodeA

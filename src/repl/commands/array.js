@@ -18,6 +18,11 @@ const toggleValue = function({ parseOpts, attr, name }) {
 const commands = [
   {
     attr: 'parsers',
+    name: 'all',
+    help: 'Toggle whether all available parsers should be used',
+  },
+  {
+    attr: 'parsers',
     name: 'acorn',
     help: 'Toggle whether Acorn should be used for parsing',
   },

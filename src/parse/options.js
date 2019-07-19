@@ -15,7 +15,8 @@ export const getOpts = function(code, opts = {}) {
 
   const optsA = { ...DEFAULT_OPTS, ...opts }
 
-  const { parsers: allowedParsers, ...parserOpts } = optsA
+  const { parsers, ...parserOpts } = optsA
+  const allowedParsers = getAllowedParsers(parsers)
   return { allowedParsers, parserOpts }
 }
 
@@ -52,10 +53,23 @@ const validateParsers = function(parsers) {
 }
 
 const validateParser = function(parser) {
-  if (abstractParser[parser] !== undefined) {
+  if (abstractParser[parser] !== undefined || isAll(parser)) {
     return
   }
 
   const parsers = Object.keys(abstractParser).join(', ')
   throw new TypeError(`Invalid parser '${parser}': must be one of ${parsers}.`)
+}
+
+// Can use `all` in `parsers` to use all parsers
+const getAllowedParsers = function(parsers) {
+  if (parsers.some(isAll)) {
+    return Object.keys(abstractParser)
+  }
+
+  return parsers
+}
+
+const isAll = function(parser) {
+  return parser === 'all'
 }

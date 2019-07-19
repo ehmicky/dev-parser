@@ -2,7 +2,7 @@ import abstractParser from 'abstract-parser'
 import {
   DEFAULT_OPTS as abstractDefaultOpts,
   EXAMPLE_OPTS as abstractExampleOpts,
-} from 'abstract-parser/options.js'
+} from 'abstract-parser/build/src/options.js'
 
 import { handleOpts } from '../options.js'
 

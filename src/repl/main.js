@@ -56,6 +56,11 @@ const evalCode = function(opts, code, context, filename, func) {
   // Parse JavaScript code to AST nodes
   const results = parse(codeB, opts)
 
+  // When there are no `parsers`
+  if (results.length === 0) {
+    return func(null, undefined)
+  }
+
   func(null, results)
 }
 

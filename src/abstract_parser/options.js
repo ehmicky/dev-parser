@@ -1,6 +1,6 @@
 import { validate } from 'jest-validate'
 
-import { validateBasicOpts } from '../utils.js'
+import { validateBasicOpts } from '../options.js'
 
 // Normalize options and assign default values
 export const getOpts = function(code, opts = {}) {

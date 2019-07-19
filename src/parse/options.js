@@ -1,11 +1,9 @@
-import { validate } from 'jest-validate'
-
 import { abstractParser } from '../abstract_parser/main.js'
 import {
   DEFAULT_OPTS as abstractDefaultOpts,
   EXAMPLE_OPTS as abstractExampleOpts,
 } from '../abstract_parser/options.js'
-import { validateBasicOpts } from '../utils.js'
+import { handleOpts } from '../options.js'
 
 // Normalize options and assign default values
 export const getOpts = function(code, opts = {}) {
@@ -13,11 +11,9 @@ export const getOpts = function(code, opts = {}) {
     throw new TypeError(`Code must be a string: ${code}`)
   }
 
-  validateBasicOpts(opts)
-  validate(opts, { exampleConfig: EXAMPLE_OPTS })
-  validateCustom(opts)
+  const optsA = handleOpts(opts, DEFAULT_OPTS, EXAMPLE_OPTS)
 
-  const optsA = { ...DEFAULT_OPTS, ...opts }
+  validateCustom(opts)
 
   const { parsers, ...parserOpts } = optsA
   const allowedParsers = getAllowedParsers(parsers)
@@ -30,8 +26,8 @@ export const DEFAULT_OPTS = {
 }
 
 export const EXAMPLE_OPTS = {
-  ...abstractExampleOpts,
   ...DEFAULT_OPTS,
+  ...abstractExampleOpts,
 }
 
 const validateCustom = function({ parsers }) {

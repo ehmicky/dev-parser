@@ -1,6 +1,4 @@
-import { validate } from 'jest-validate'
-
-import { validateBasicOpts } from '../utils.js'
+import { handleOpts } from '../options.js'
 import {
   DEFAULT_OPTS as defaultPrintOpts,
   EXAMPLE_OPTS as examplePrintOpts,
@@ -11,10 +9,7 @@ import { DEFAULT_HISTORY } from './history.js'
 // Normalize options and assign default values
 // Do not handle options already handled by abstract-parser
 export const getOpts = function(opts = {}) {
-  validateBasicOpts(opts)
-  validate(opts, { exampleConfig: EXAMPLE_OPTS })
-
-  const optsA = { ...DEFAULT_OPTS, ...opts }
+  const optsA = handleOpts(opts, DEFAULT_OPTS, EXAMPLE_OPTS)
 
   const { history, colors, ...parseOpts } = optsA
   return { history, parseOpts, serializeOpts: { colors } }

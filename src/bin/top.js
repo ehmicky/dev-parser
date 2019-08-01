@@ -17,7 +17,7 @@ const CONFIG = {
     string: true,
     array: true,
     describe: `Which parsers to use.
-Can be babel (default), babelEstree, esprima, acorn, espree, meriyah, typescriptEstree or all.
+Can be babel (default), babelestree, esprima, acorn, espree, meriyah, typescriptestree or all.
 Several parsers can be used at once.
 Default: babel`,
     requiresArg: true,
@@ -26,13 +26,13 @@ Default: babel`,
   typescript: {
     boolean: true,
     describe: `Allow TypeScript.
-Only supported by babel, babelEstree and typescriptEstree.
+Only supported by babel, babelestree and typescriptestree.
 Default: false`,
   },
   flow: {
     boolean: true,
     describe: `Allow Flow.
-Only supported by babel and babelEstree.
+Only supported by babel and babelestree.
 Default: false`,
   },
   jsx: {
@@ -49,7 +49,7 @@ Default: false`,
   script: {
     boolean: true,
     describe: `Do not use ES modules syntax.
-Not supported by typescriptEstree.
+Not supported by typescriptestree.
 Default: false`,
   },
   loose: {
@@ -60,7 +60,7 @@ Default: false`,
   strict: {
     boolean: true,
     describe: `Use strict mode.
-Only supported by babel, babelEstree, espree and meriyah.
+Only supported by babel, babelestree, espree and meriyah.
 Default: false`,
   },
   top: {
@@ -76,7 +76,6 @@ Default: false`,
   comments: {
     boolean: true,
     describe: `Show AST nodes for comments.
-Not supported by Meriyah.
 Default: false`,
   },
   tokens: {
@@ -88,7 +87,7 @@ Default: false`,
   parens: {
     boolean: true,
     describe: `Show AST nodes for parenthesized expressions.
-Only supported by babel, babelEstree and acorn.
+Only supported by babel, babelestree and acorn.
 Default: false`,
   },
   source: {
@@ -96,7 +95,7 @@ Default: false`,
     requiresArg: true,
     describe: `Pass a filename to show in AST nodes.
 The 'locations' option should be used as well.
-Only supported by babel, babelEstree, acorn and meriyah.`,
+Only supported by babel, babelestree, acorn and meriyah.`,
   },
   history: {
     string: true,

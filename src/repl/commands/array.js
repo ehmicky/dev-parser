@@ -25,7 +25,7 @@ const commands = [
   },
   {
     attr: 'parsers',
-    name: 'babelEstree',
+    name: 'babelestree',
     help: 'Toggle whether Babel-ESTree should be used for parsing',
   },
   {
@@ -45,7 +45,7 @@ const commands = [
   },
   {
     attr: 'parsers',
-    name: 'typescriptEstree',
+    name: 'typescriptestree',
     help: 'Toggle whether TypeScript-ESTree should be used for parsing',
   },
 ]

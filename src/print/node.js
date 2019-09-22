@@ -7,7 +7,7 @@ import { removeIndent } from './indent.js'
 export const serializeNode = function(node, { chalk }) {
   const nodeString = inspect(node, {
     ...INSPECT_OPTS,
-    colors: chalk !== undefined,
+    colors: chalk.level !== 0,
   })
   const nodeStringA = removeDelimiters(nodeString)
   const nodeStringB = removeIndent(nodeStringA)

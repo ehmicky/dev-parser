@@ -34,7 +34,7 @@
     "abstract-parser": "^0.1.0",
     "chalk": "^3.0.0-beta.1",
     "core-js": "^3.2.1",
-    "filter-obj": "^2.0.0",
+    "filter-obj": "^2.0.1",
     "is-plain-obj": "^2.0.0",
     "jest-validate": "^24.9.0",
     "supports-color": "^7.1.0",

@@ -1,5 +1,8 @@
 #!/usr/bin/env node
-import { exit } from 'process'
+import { exit, env } from 'process'
+
+import UpdateNotifier from 'update-notifier'
+import readPkgUp from 'read-pkg-up'
 
 import { print, repl } from '../main.js'
 
@@ -9,6 +12,8 @@ import { parseOpts } from './parse.js'
 // Parse CLI arguments then run tasks
 const runCli = async function() {
   try {
+    await checkUpdate()
+
     const yargs = defineCli()
     const { code, opts } = parseOpts(yargs)
 
@@ -16,6 +21,12 @@ const runCli = async function() {
   } catch (error) {
     runCliHandler(error)
   }
+}
+
+const checkUpdate = async function() {
+  const { packageJson } = await readPkgUp({ cwd: __dirname, normalize: false })
+  const disabled = env.NODE_ENV === 'test'
+  UpdateNotifier({ pkg: packageJson, disabled }).notify()
 }
 
 const runCommand = async function(code, opts) {

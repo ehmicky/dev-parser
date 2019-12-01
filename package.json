@@ -37,7 +37,7 @@
     "filter-obj": "^2.0.1",
     "is-plain-obj": "^2.0.0",
     "jest-validate": "^24.9.0",
-    "read-pkg-up": "^7.0.0",
+    "read-pkg-up": "^7.0.1",
     "supports-color": "^7.1.0",
     "update-notifier": "^3.0.1",
     "yargs": "^15.0.2"

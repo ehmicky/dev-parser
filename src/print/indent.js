@@ -13,7 +13,7 @@ const getIndent = function(nodeString) {
   return indent
 }
 
-const INDENT_REGEXP = /^( )*/gmu
+const INDENT_REGEXP = /^ */gmu
 
 const getSpacesLength = function(spaces) {
   return spaces.length

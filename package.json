@@ -31,7 +31,7 @@
     "test": "test"
   },
   "dependencies": {
-    "abstract-parser": "^0.1.0",
+    "abstract-parser": "^0.2.0",
     "chalk": "^3.0.0",
     "core-js": "^3.6.0",
     "filter-obj": "^2.0.1",

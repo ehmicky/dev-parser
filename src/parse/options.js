@@ -7,7 +7,7 @@ import {
 import { handleOpts } from '../options.js'
 
 // Normalize options and assign default values
-export const getOpts = function(code, opts = {}) {
+export const getOpts = function (code, opts = {}) {
   if (typeof code !== 'string') {
     throw new TypeError(`Code must be a string: ${code}`)
   }
@@ -31,11 +31,11 @@ export const EXAMPLE_OPTS = {
   ...abstractExampleOpts,
 }
 
-const validateCustom = function({ parsers }) {
+const validateCustom = function ({ parsers }) {
   validateParsers(parsers)
 }
 
-const validateParsers = function(parsers) {
+const validateParsers = function (parsers) {
   if (parsers === undefined) {
     return
   }
@@ -43,7 +43,7 @@ const validateParsers = function(parsers) {
   parsers.forEach(validateParser)
 }
 
-const validateParser = function(parser) {
+const validateParser = function (parser) {
   if (abstractParser[parser] !== undefined || isAll(parser)) {
     return
   }
@@ -53,7 +53,7 @@ const validateParser = function(parser) {
 }
 
 // Can use `all` in `parsers` to use all parsers
-const getAllowedParsers = function(parsers) {
+const getAllowedParsers = function (parsers) {
   if (parsers.some(isAll)) {
     return Object.keys(abstractParser)
   }
@@ -61,6 +61,6 @@ const getAllowedParsers = function(parsers) {
   return parsers
 }
 
-const isAll = function(parser) {
+const isAll = function (parser) {
   return parser === 'all'
 }

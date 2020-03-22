@@ -10,7 +10,7 @@ import { defineCommands } from './commands/main.js'
 import { setupHistory } from './history.js'
 
 // Starts a REPL that parses JavaScript code as input and prints their AST
-export const repl = async function(opts) {
+export const repl = async function (opts) {
   const { history, parseOpts, serializeOpts } = getOpts(opts)
 
   const replServer = start({
@@ -30,7 +30,7 @@ export const repl = async function(opts) {
 }
 
 // eslint-disable-next-line max-params
-const evalCode = function(parseOpts, code, context, filename, func) {
+const evalCode = function (parseOpts, code, context, filename, func) {
   // Entering nothing should be noop
   if (code.trim() === '') {
     return func(null, undefined)
@@ -57,6 +57,6 @@ const evalCode = function(parseOpts, code, context, filename, func) {
 }
 
 // Serialize AST resuls
-const serializeCode = function(serializeOpts, results) {
+const serializeCode = function (serializeOpts, results) {
   return serialize(results, serializeOpts)
 }

@@ -2,7 +2,7 @@ import { homedir } from 'os'
 import { promisify } from 'util'
 
 // Persist inputs in a file
-export const setupHistory = async function(replServer, history) {
+export const setupHistory = async function (replServer, history) {
   // Like Node REPL
   // eslint-disable-next-line fp/no-mutation, no-param-reassign
   replServer.removeHistoryDuplicates = true

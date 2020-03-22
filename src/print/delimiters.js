@@ -1,9 +1,9 @@
 // Remove the outer [] and {} so the output takes fewer lines
-export const removeDelimiters = function(nodeString) {
+export const removeDelimiters = function (nodeString) {
   return REGEXPS.reduce(reduceDelimiter, nodeString)
 }
 
-const reduceDelimiter = function(nodeString, regExp) {
+const reduceDelimiter = function (nodeString, regExp) {
   return nodeString.replace(regExp, '')
 }
 

@@ -6,7 +6,7 @@ import { serializeNode } from './node.js'
 
 // Parse JavaScript code with several parsers and print the produced AST on
 // the console
-export const print = function(code, opts) {
+export const print = function (code, opts) {
   const { colors, parseOpts } = getOpts(opts)
 
   const results = parse(code, parseOpts)
@@ -22,17 +22,17 @@ export const print = function(code, opts) {
 }
 
 // Serialize AST nodes so they can be printed on the console
-export const serialize = function(results, { colors }) {
+export const serialize = function (results, { colors }) {
   const showHeader = results.length !== 1
   const chalk = getChalk(colors)
 
   const output = results
-    .map(result => serializeResult(result, { showHeader, chalk }))
+    .map((result) => serializeResult(result, { showHeader, chalk }))
     .join('\n\n')
   return `\n${output}\n`
 }
 
-const serializeResult = function(
+const serializeResult = function (
   { title, node, error },
   { showHeader, chalk },
 ) {
@@ -42,7 +42,7 @@ const serializeResult = function(
 }
 
 // Retrieve header showing each parser's name
-const getHeader = function({ title, showHeader, chalk }) {
+const getHeader = function ({ title, showHeader, chalk }) {
   // When there's only one parser, we do not show its name
   if (!showHeader) {
     return ''
@@ -57,7 +57,7 @@ const getHeader = function({ title, showHeader, chalk }) {
 }
 
 // Serialize AST node or thrown error produced by each parser
-const serializeContent = function({ node, error, chalk }) {
+const serializeContent = function ({ node, error, chalk }) {
   if (error) {
     return String(error)
   }

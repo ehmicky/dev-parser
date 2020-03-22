@@ -1,5 +1,5 @@
 // Array attributes have one REPL command per value, which toggles that value
-const action = function({ parseOpts, attr, name }) {
+const action = function ({ parseOpts, attr, name }) {
   // eslint-disable-next-line no-param-reassign, fp/no-mutation
   parseOpts[attr] = [name]
 

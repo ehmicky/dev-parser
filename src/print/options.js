@@ -8,7 +8,7 @@ import { DEFAULT_COLORS } from './colors.js'
 
 // Normalize options and assign default values
 // Do not handle options already handled by abstract-parser
-export const getOpts = function(opts = {}) {
+export const getOpts = function (opts = {}) {
   const optsA = handleOpts(opts, DEFAULT_OPTS, EXAMPLE_OPTS)
 
   const { colors, ...parseOpts } = optsA

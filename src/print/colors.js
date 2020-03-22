@@ -1,12 +1,12 @@
 import Chalk from 'chalk'
 import { stdout as supportsColor } from 'supports-color'
 
-export const getChalk = function(colors) {
+export const getChalk = function (colors) {
   const level = getLevel(colors)
   return new Chalk.Instance({ level })
 }
 
-const getLevel = function(colors) {
+const getLevel = function (colors) {
   if (!colors) {
     return 0
   }

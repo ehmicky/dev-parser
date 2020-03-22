@@ -10,7 +10,7 @@ import { defineCli } from './top.js'
 import { parseOpts } from './parse.js'
 
 // Parse CLI arguments then run tasks
-const runCli = async function() {
+const runCli = async function () {
   try {
     await checkUpdate()
 
@@ -23,12 +23,12 @@ const runCli = async function() {
   }
 }
 
-const checkUpdate = async function() {
+const checkUpdate = async function () {
   const { packageJson } = await readPkgUp({ cwd: __dirname, normalize: false })
   UpdateNotifier({ pkg: packageJson }).notify()
 }
 
-const runCommand = async function(code, opts) {
+const runCommand = async function (code, opts) {
   if (code === undefined) {
     await repl(opts)
     return
@@ -38,7 +38,7 @@ const runCommand = async function(code, opts) {
 }
 
 // If an error is thrown, print error's description, then exit with exit code 1
-const runCliHandler = function({ message }) {
+const runCliHandler = function ({ message }) {
   console.error(message)
 
   exit(1)

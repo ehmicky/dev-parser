@@ -1,7 +1,7 @@
 /* eslint-disable max-lines */
 import yargs from 'yargs'
 
-export const defineCli = function() {
+export const defineCli = function () {
   return yargs
     .options(CONFIG)
     .usage(USAGE)

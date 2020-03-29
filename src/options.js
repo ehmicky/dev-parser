@@ -1,5 +1,5 @@
-import { validate } from 'jest-validate'
 import isPlainObj from 'is-plain-obj'
+import { validate } from 'jest-validate'
 
 // Validate options and assign default values
 export const handleOpts = function (opts, defaultOpts, exampleConfig) {

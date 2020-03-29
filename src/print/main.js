@@ -1,8 +1,8 @@
 import { parse } from '../parse/main.js'
 
-import { getOpts } from './options.js'
 import { getChalk } from './colors.js'
 import { serializeNode } from './node.js'
+import { getOpts } from './options.js'
 
 // Parse JavaScript code with several parsers and print the produced AST on
 // the console

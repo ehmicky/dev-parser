@@ -3,11 +3,11 @@ import { start, Recoverable } from 'repl'
 import { parse } from '../parse/main.js'
 import { serialize } from '../print/main.js'
 
-import { getOpts } from './options.js'
-import { getPrompt } from './prompt.js'
-import { isMultiline, handleMultiline } from './multiline.js'
 import { defineCommands } from './commands/main.js'
 import { setupHistory } from './history.js'
+import { isMultiline, handleMultiline } from './multiline.js'
+import { getOpts } from './options.js'
+import { getPrompt } from './prompt.js'
 
 // Starts a REPL that parses JavaScript code as input and prints their AST
 export const repl = async function (opts) {

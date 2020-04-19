@@ -14,4 +14,5 @@ export const serializeNode = function (node, { chalk }) {
   return nodeStringB
 }
 
+// eslint-disable-next-line unicorn/no-null
 const INSPECT_OPTS = { depth: null, maxArrayLength: null }

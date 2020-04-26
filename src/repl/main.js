@@ -15,8 +15,8 @@ export const repl = async function (opts) {
 
   const replServer = start({
     prompt: getPrompt(serializeOpts),
-    eval: evalCode.bind(null, parseOpts),
-    writer: serializeCode.bind(null, serializeOpts),
+    eval: evalCode.bind(undefined, parseOpts),
+    writer: serializeCode.bind(undefined, serializeOpts),
     ignoreUndefined: true,
     // Like Node REPL
     historySize: 1e3,

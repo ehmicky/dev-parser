@@ -34,7 +34,7 @@ const evalCode = function (parseOpts, code, context, filename, func) {
   // Entering nothing should be noop
   if (code.trim() === '') {
     // eslint-disable-next-line unicorn/no-null
-    return func(null, undefined)
+    return func(null)
   }
 
   // Remove trailing newline
@@ -52,7 +52,7 @@ const evalCode = function (parseOpts, code, context, filename, func) {
   // When there are no `parsers`
   if (results.length === 0) {
     // eslint-disable-next-line unicorn/no-null
-    return func(null, undefined)
+    return func(null)
   }
 
   // eslint-disable-next-line unicorn/no-null

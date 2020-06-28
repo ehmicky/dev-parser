@@ -5,8 +5,7 @@ export const defineCli = function () {
   return yargs
     .options(CONFIG)
     .usage(USAGE)
-    .example(REPL_EXAMPLE, 'Start an interactive session')
-    .example(PRINT_EXAMPLE, 'Parse a specific code string')
+    .example(EXAMPLES)
     .help()
     .version()
     .strict()
@@ -122,6 +121,8 @@ name. For example:
   - .acorn toggles using Acorn
   - .comments toggles comments parsing`
 
-const REPL_EXAMPLE = '$0'
-const PRINT_EXAMPLE = "$0 '1 + 1'"
+const EXAMPLES = [
+  ['$0', 'Start an interactive session'],
+  ["$0 '1 + 1'", 'Parse a specific code string'],
+]
 /* eslint-enable max-lines */

@@ -18,7 +18,7 @@ const getParsers = function ({ allowedParsers, parserOpts }) {
     .filter((parser) => supportsSyntaxes(parser, parserOpts))
 }
 
-// The `parsers` option can whitelist specific parsers
+// The `parsers` option can allow specific parsers
 const isAllowed = function ({ id }, allowedParsers) {
   return allowedParsers === undefined || allowedParsers.includes(id)
 }

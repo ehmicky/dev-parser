@@ -33,7 +33,7 @@
   "dependencies": {
     "abstract-parser": "^0.2.0",
     "chalk": "^4.1.0",
-    "core-js": "^3.8.0",
+    "core-js": "^3.8.1",
     "filter-obj": "^2.0.1",
     "is-plain-obj": "^3.0.0",
     "jest-validate": "^26.6.2",

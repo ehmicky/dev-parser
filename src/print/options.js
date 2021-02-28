@@ -20,4 +20,5 @@ export const DEFAULT_OPTS = {
 export const EXAMPLE_OPTS = {
   ...DEFAULT_OPTS,
   ...exampleParseOpts,
+  colors: true,
 }

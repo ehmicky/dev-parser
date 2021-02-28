@@ -1,6 +1,7 @@
+import colorsOption from 'colors-option'
+
 import { parse } from '../parse/main.js'
 
-import { getChalk } from './colors.js'
 import { serializeNode } from './node.js'
 import { getOpts } from './options.js'
 
@@ -24,7 +25,7 @@ export const print = function (code, opts) {
 // Serialize AST nodes so they can be printed on the console
 export const serialize = function (results, { colors }) {
   const showHeader = results.length !== 1
-  const chalk = getChalk(colors)
+  const chalk = colorsOption({ colors })
 
   const output = results
     .map((result) => serializeResult(result, { showHeader, chalk }))

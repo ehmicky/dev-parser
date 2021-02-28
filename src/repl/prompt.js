@@ -1,8 +1,8 @@
-import { getChalk } from '../print/colors.js'
+import colorsOption from 'colors-option'
 
 // REPL prompt
 export const getPrompt = function ({ colors }) {
-  const chalk = getChalk(colors)
+  const chalk = colorsOption({ colors })
   return chalk.yellow.bold(PROMPT)
 }
 

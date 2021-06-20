@@ -34,7 +34,6 @@
   "dependencies": {
     "abstract-parser": "^0.2.0",
     "colors-option": "^1.0.0",
-    "core-js": "^3.10.0",
     "filter-obj": "^2.0.1",
     "is-plain-obj": "^3.0.0",
     "jest-validate": "^26.6.2",

@@ -7,14 +7,13 @@ import { defineCommands } from './commands/main.js'
 import { setupHistory } from './history.js'
 import { isMultiline, handleMultiline } from './multiline.js'
 import { getOpts } from './options.js'
-import { getPrompt } from './prompt.js'
 
 // Starts a REPL that parses JavaScript code as input and prints their AST
 export const repl = async function (opts) {
   const { history, parseOpts, serializeOpts } = getOpts(opts)
 
   const replServer = start({
-    prompt: getPrompt(serializeOpts),
+    prompt: PROMPT,
     eval: evalCode.bind(undefined, parseOpts),
     writer: serializeCode.bind(undefined, serializeOpts),
     ignoreUndefined: true,
@@ -28,6 +27,9 @@ export const repl = async function (opts) {
 
   return replServer
 }
+
+// REPL prompt
+const PROMPT = '> '
 
 // eslint-disable-next-line max-params
 const evalCode = function (parseOpts, code, context, filename, func) {

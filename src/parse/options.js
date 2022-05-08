@@ -1,4 +1,5 @@
-import abstractParser from 'abstract-parser'
+// eslint-disable-next-line import/no-namespace
+import * as abstractParser from 'abstract-parser'
 import {
   DEFAULT_OPTS as abstractDefaultOpts,
   EXAMPLE_OPTS as abstractExampleOpts,

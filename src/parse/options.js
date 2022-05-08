@@ -1,9 +1,5 @@
 // eslint-disable-next-line import/no-namespace
 import * as abstractParser from 'abstract-parser'
-import {
-  DEFAULT_OPTS as abstractDefaultOpts,
-  EXAMPLE_OPTS as abstractExampleOpts,
-} from 'abstract-parser/build/src/options.js'
 
 import { handleOpts } from '../options.js'
 
@@ -23,13 +19,27 @@ export const getOpts = function (code, opts = {}) {
 }
 
 export const DEFAULT_OPTS = {
-  ...abstractDefaultOpts,
   parsers: ['babel'],
+  // Forwarded to abstract-parser
+  legacy: false,
+  script: false,
+  loose: false,
+  strict: false,
+  top: false,
+  sort: false,
+  locations: false,
+  comments: false,
+  tokens: false,
+  parens: false,
+  typescript: false,
+  flow: false,
+  jsx: false,
 }
 
 export const EXAMPLE_OPTS = {
   ...DEFAULT_OPTS,
-  ...abstractExampleOpts,
+  // Forwarded to abstract-parser
+  source: 'filename.js',
 }
 
 const validateCustom = function ({ parsers }) {

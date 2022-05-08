@@ -28,7 +28,7 @@
     "test": "test"
   },
   "dependencies": {
-    "abstract-parser": "^0.2.0",
+    "abstract-parser": "^0.3.0",
     "colors-option": "^3.0.0",
     "filter-obj": "^3.0.0",
     "is-plain-obj": "^4.0.0",

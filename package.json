@@ -32,7 +32,7 @@
     "colors-option": "^4.0.0",
     "filter-obj": "^3.0.0",
     "is-plain-obj": "^4.1.0",
-    "jest-validate": "^27.5.1",
+    "jest-validate": "^28.1.1",
     "read-pkg-up": "^9.1.0",
     "update-notifier": "^5.0.1",
     "yargs": "^17.5.1"

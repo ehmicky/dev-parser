@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "abstract-parser": "^0.3.0",
-    "colors-option": "^4.0.0",
+    "colors-option": "^4.1.0",
     "filter-obj": "^3.0.0",
     "is-plain-obj": "^4.1.0",
     "jest-validate": "^28.1.1",

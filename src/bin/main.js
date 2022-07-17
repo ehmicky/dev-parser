@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 import { dirname } from 'path'
-import { exit } from 'process'
 import { fileURLToPath } from 'url'
 
+import handleCliError from 'handle-cli-error'
 import { readPackageUp } from 'read-pkg-up'
 import UpdateNotifier from 'update-notifier'
 
@@ -21,7 +21,7 @@ const runCli = async function () {
 
     await runCommand(code, opts)
   } catch (error) {
-    runCliHandler(error)
+    handleCliError(error)
   }
 }
 
@@ -39,13 +39,6 @@ const runCommand = async function (code, opts) {
   }
 
   print(String(code), opts)
-}
-
-// If an error is thrown, print error's description, then exit with exit code 1
-const runCliHandler = function ({ message }) {
-  console.error(message)
-
-  exit(1)
 }
 
 runCli()

@@ -1,5 +1,5 @@
 [![Codecov](https://img.shields.io/codecov/c/github/ehmicky/dev-parser.svg?label=tested&logo=codecov)](https://codecov.io/gh/ehmicky/dev-parser)
-[![Node](https://img.shields.io/node/v/dev-parser.svg?logo=node.js)](https://www.npmjs.com/package/dev-parser)
+[![Node](https://img.shields.io/node/v/dev-parser.svg?logo=node.js&logoColor=66cc33)](https://www.npmjs.com/package/dev-parser)
 [![Twitter](https://img.shields.io/badge/%E2%80%8B-twitter-brightgreen.svg?logo=twitter)](https://twitter.com/intent/follow?screen_name=ehmicky)
 [![Medium](https://img.shields.io/badge/%E2%80%8B-medium-brightgreen.svg?logo=medium)](https://medium.com/@ehmicky)
 

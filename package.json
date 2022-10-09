@@ -30,7 +30,7 @@
     "abstract-parser": "^0.6.1",
     "colors-option": "^4.3.1",
     "filter-obj": "^5.1.0",
-    "handle-cli-error": "^2.5.0",
+    "handle-cli-error": "^2.5.1",
     "is-plain-obj": "^4.1.0",
     "jest-validate": "^29.0.1",
     "read-pkg-up": "^9.1.0",

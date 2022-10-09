@@ -27,7 +27,7 @@
     "test": "test"
   },
   "dependencies": {
-    "abstract-parser": "^0.5.0",
+    "abstract-parser": "^0.6.0",
     "colors-option": "^4.2.0",
     "filter-obj": "^5.1.0",
     "handle-cli-error": "^2.5.0",

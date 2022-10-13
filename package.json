@@ -15,7 +15,7 @@
   },
   "description": "Parse JavaScript using a terminal",
   "keywords": [],
-  "license": "Apache-2.0",
+  "license": "MIT",
   "homepage": "https://www.github.com/ehmicky/dev-parser",
   "repository": "ehmicky/dev-parser",
   "bugs": {

@@ -1,7 +1,6 @@
 // eslint-disable-next-line import/no-namespace
 import * as abstractParser from 'abstract-parser'
-
-import { handleOpts } from '../options.js'
+import isPlainObj from 'is-plain-obj'
 
 // Normalize options and assign default values
 export const getOpts = function (code, opts = {}) {
@@ -9,46 +8,22 @@ export const getOpts = function (code, opts = {}) {
     throw new TypeError(`Code must be a string: ${code}`)
   }
 
-  const optsA = handleOpts(opts, DEFAULT_OPTS, EXAMPLE_OPTS)
-
-  validateCustom(opts)
-
-  const { parsers, ...parserOpts } = optsA
+  validateBasicOpts(opts)
+  const { parsers = ['babel'], ...parserOpts } = opts
+  validateParsers(parsers)
   const allowedParsers = getAllowedParsers(parsers)
   return { allowedParsers, parserOpts }
 }
 
-export const DEFAULT_OPTS = {
-  parsers: ['babel'],
-  // Forwarded to abstract-parser
-  legacy: false,
-  script: false,
-  loose: false,
-  strict: false,
-  top: false,
-  sort: false,
-  locations: false,
-  comments: false,
-  tokens: false,
-  parens: false,
-  typescript: false,
-  flow: false,
-  jsx: false,
-}
-
-export const EXAMPLE_OPTS = {
-  ...DEFAULT_OPTS,
-  // Forwarded to abstract-parser
-  source: 'filename.js',
-}
-
-const validateCustom = function ({ parsers }) {
-  validateParsers(parsers)
+export const validateBasicOpts = function (opts) {
+  if (!isPlainObj(opts)) {
+    throw new TypeError(`Options must be a plain object: ${opts}`)
+  }
 }
 
 const validateParsers = function (parsers) {
-  if (parsers === undefined) {
-    return
+  if (!Array.isArray(parsers)) {
+    throw new TypeError(`Option "parsers" must be an array: ${parsers}`)
   }
 
   parsers.forEach(validateParser)
@@ -65,11 +40,7 @@ const validateParser = function (parser) {
 
 // Can use `all` in `parsers` to use all parsers
 const getAllowedParsers = function (parsers) {
-  if (parsers.some(isAll)) {
-    return Object.keys(abstractParser)
-  }
-
-  return parsers
+  return parsers.some(isAll) ? Object.keys(abstractParser) : parsers
 }
 
 const isAll = function (parser) {

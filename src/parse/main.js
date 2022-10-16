@@ -6,14 +6,13 @@ import { getOpts } from './options.js'
 // Parse JavaScript code with several parsers
 export const parse = function (code, opts) {
   const { allowedParsers, parserOpts } = getOpts(code, opts)
-
-  const parsers = getParsers({ allowedParsers, parserOpts })
-  const results = callParsers({ parsers, code, parserOpts })
+  const parsers = getParsers(allowedParsers, parserOpts)
+  const results = callParsers(parsers, code, parserOpts)
   return results
 }
 
 // Retrieve all JavaScript parsers to be used
-const getParsers = function ({ allowedParsers, parserOpts }) {
+const getParsers = function (allowedParsers, parserOpts) {
   return Object.values(abstractParser)
     .filter((parser) => isAllowed(parser, allowedParsers))
     .filter((parser) => supportsSyntaxes(parser, parserOpts))
@@ -34,15 +33,11 @@ const supportsSyntaxes = function (parser, { typescript, flow, jsx }) {
 }
 
 // Parse JavaScript code with several parsers
-const callParsers = function ({ parsers, code, parserOpts }) {
-  return parsers.map((parser) => callParser({ parser, code, parserOpts }))
+const callParsers = function (parsers, code, parserOpts) {
+  return parsers.map((parser) => callParser(parser, code, parserOpts))
 }
 
-const callParser = function ({
-  parser: { title, parse: parseCode },
-  code,
-  parserOpts,
-}) {
+const callParser = function ({ title, parse: parseCode }, code, parserOpts) {
   try {
     const node = parseCode(code, { ...parserOpts, sort: true })
     return { title, node }

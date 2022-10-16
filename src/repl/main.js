@@ -61,7 +61,7 @@ const evalCode = function (parseOpts, code, context, filename, func) {
   func(null, results)
 }
 
-// Serialize AST resuls
+// Serialize AST results
 const serializeCode = function (serializeOpts, results) {
   return serialize(results, serializeOpts)
 }

@@ -1,24 +1,14 @@
-import { handleOpts } from '../options.js'
-import {
-  DEFAULT_OPTS as defaultParseOpts,
-  EXAMPLE_OPTS as exampleParseOpts,
-} from '../parse/options.js'
+import { validateBasicOpts } from '../parse/options.js'
 
 // Normalize options and assign default values
 // Do not handle options already handled by abstract-parser
 export const getOpts = function (opts = {}) {
-  const optsA = handleOpts(opts, DEFAULT_OPTS, EXAMPLE_OPTS)
+  validateBasicOpts(opts)
+  const { colors = true, ...parseOpts } = opts
 
-  const { colors, ...parseOpts } = optsA
+  if (typeof colors !== 'boolean') {
+    throw new TypeError(`Option "colors" must be a boolean: ${colors}`)
+  }
+
   return { colors, parseOpts }
-}
-
-export const DEFAULT_OPTS = {
-  ...defaultParseOpts,
-}
-
-export const EXAMPLE_OPTS = {
-  ...DEFAULT_OPTS,
-  ...exampleParseOpts,
-  colors: true,
 }

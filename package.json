@@ -32,7 +32,6 @@
     "filter-obj": "^5.1.0",
     "handle-cli-error": "^3.0.0",
     "is-plain-obj": "^4.1.0",
-    "jest-validate": "^29.0.1",
     "read-pkg-up": "^9.1.0",
     "update-notifier": "^6.0.2",
     "yargs": "^17.5.1"

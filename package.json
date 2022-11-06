@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "abstract-parser": "^0.6.4",
-    "colors-option": "^4.4.0",
+    "colors-option": "^4.5.0",
     "filter-obj": "^5.1.0",
     "handle-cli-error": "^3.0.1",
     "is-plain-obj": "^4.1.0",

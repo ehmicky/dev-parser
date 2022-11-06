@@ -1,4 +1,4 @@
-import { start, Recoverable } from 'repl'
+import { start, Recoverable } from 'node:repl'
 
 import { parse } from '../parse/main.js'
 import { serialize } from '../print/main.js'

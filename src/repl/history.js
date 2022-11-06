@@ -1,5 +1,5 @@
-import { homedir } from 'os'
-import { promisify } from 'util'
+import { homedir } from 'node:os'
+import { promisify } from 'node:util'
 
 // Persist inputs in a file
 export const setupHistory = async function (replServer, history) {

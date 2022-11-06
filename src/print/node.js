@@ -1,4 +1,4 @@
-import { inspect } from 'util'
+import { inspect } from 'node:util'
 
 import { removeDelimiters } from './delimiters.js'
 import { removeIndent } from './indent.js'

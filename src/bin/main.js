@@ -41,4 +41,4 @@ const runCommand = async function (code, opts) {
   print(String(code), opts)
 }
 
-runCli()
+await runCli()

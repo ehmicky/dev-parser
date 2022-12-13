@@ -1,5 +1,5 @@
 // Boolean attributes are toggled by their REPL command
-const action = function ({ parseOpts, name }) {
+const action = ({ parseOpts, name }) => {
   // eslint-disable-next-line no-param-reassign, fp/no-mutation
   parseOpts[name] = !parseOpts[name]
 

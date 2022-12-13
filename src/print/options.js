@@ -2,7 +2,7 @@ import { validateBasicOpts } from '../parse/options.js'
 
 // Normalize options and assign default values
 // Do not handle options already handled by abstract-parser
-export const getOpts = function (opts = {}) {
+export const getOpts = (opts = {}) => {
   validateBasicOpts(opts)
   const { colors = true, ...parseOpts } = opts
 

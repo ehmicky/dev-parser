@@ -4,7 +4,7 @@ import { DEFAULT_HISTORY } from './history.js'
 
 // Normalize options and assign default values
 // Do not handle options already handled by abstract-parser
-export const getOpts = function (opts = {}) {
+export const getOpts = (opts = {}) => {
   validateBasicOpts(opts)
   const { history = DEFAULT_HISTORY, colors = true, ...parseOpts } = opts
 

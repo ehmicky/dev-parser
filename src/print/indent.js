@@ -1,5 +1,5 @@
 // Remove the extra indentation created by the delimiters removal
-export const removeIndent = function (nodeString) {
+export const removeIndent = (nodeString) => {
   const indent = getIndent(nodeString)
   return nodeString
     .split('\n')
@@ -7,7 +7,7 @@ export const removeIndent = function (nodeString) {
     .join('\n')
 }
 
-const getIndent = function (nodeString) {
+const getIndent = (nodeString) => {
   const lengths = nodeString.match(INDENT_REGEXP).map(getSpacesLength)
   const indent = Math.min(...lengths)
   return indent
@@ -15,6 +15,4 @@ const getIndent = function (nodeString) {
 
 const INDENT_REGEXP = /^ */gmu
 
-const getSpacesLength = function (spaces) {
-  return spaces.length
-}
+const getSpacesLength = (spaces) => spaces.length

@@ -9,7 +9,7 @@ import { isMultiline, handleMultiline } from './multiline.js'
 import { getOpts } from './options.js'
 
 // Starts a REPL that parses JavaScript code as input and prints their AST
-export const repl = async function (opts) {
+export const repl = async (opts) => {
   const { history, parseOpts, serializeOpts } = getOpts(opts)
 
   const replServer = start({
@@ -32,7 +32,7 @@ export const repl = async function (opts) {
 const PROMPT = '> '
 
 // eslint-disable-next-line max-params
-const evalCode = function (parseOpts, code, context, filename, func) {
+const evalCode = (parseOpts, code, context, filename, func) => {
   // Entering nothing should be noop
   if (code.trim() === '') {
     // eslint-disable-next-line unicorn/no-null
@@ -62,6 +62,5 @@ const evalCode = function (parseOpts, code, context, filename, func) {
 }
 
 // Serialize AST results
-const serializeCode = function (serializeOpts, results) {
-  return serialize(results, serializeOpts)
-}
+const serializeCode = (serializeOpts, results) =>
+  serialize(results, serializeOpts)

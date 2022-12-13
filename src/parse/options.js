@@ -3,7 +3,7 @@ import * as abstractParser from 'abstract-parser'
 import isPlainObj from 'is-plain-obj'
 
 // Normalize options and assign default values
-export const getOpts = function (code, opts = {}) {
+export const getOpts = (code, opts = {}) => {
   if (typeof code !== 'string') {
     throw new TypeError(`Code must be a string: ${code}`)
   }
@@ -15,13 +15,13 @@ export const getOpts = function (code, opts = {}) {
   return { allowedParsers, parserOpts }
 }
 
-export const validateBasicOpts = function (opts) {
+export const validateBasicOpts = (opts) => {
   if (!isPlainObj(opts)) {
     throw new TypeError(`Options must be a plain object: ${opts}`)
   }
 }
 
-const validateParsers = function (parsers) {
+const validateParsers = (parsers) => {
   if (!Array.isArray(parsers)) {
     throw new TypeError(`Option "parsers" must be an array: ${parsers}`)
   }
@@ -29,7 +29,7 @@ const validateParsers = function (parsers) {
   parsers.forEach(validateParser)
 }
 
-const validateParser = function (parser) {
+const validateParser = (parser) => {
   if (abstractParser[parser] !== undefined || isAll(parser)) {
     return
   }
@@ -39,10 +39,7 @@ const validateParser = function (parser) {
 }
 
 // Can use `all` in `parsers` to use all parsers
-const getAllowedParsers = function (parsers) {
-  return parsers.some(isAll) ? Object.keys(abstractParser) : parsers
-}
+const getAllowedParsers = (parsers) =>
+  parsers.some(isAll) ? Object.keys(abstractParser) : parsers
 
-const isAll = function (parser) {
-  return parser === 'all'
-}
+const isAll = (parser) => parser === 'all'

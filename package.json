@@ -25,8 +25,7 @@
   },
   "author": "ehmicky <ehmicky@gmail.com> (https://github.com/ehmicky)",
   "directories": {
-    "lib": "src",
-    "test": "test"
+    "lib": "src"
   },
   "dependencies": {
     "abstract-parser": "^0.6.4",

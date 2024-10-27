@@ -1,3 +1,4 @@
+// eslint-disable-next-line n/no-deprecated-api
 import { start, Recoverable } from 'node:repl'
 
 import { parse } from '../parse/main.js'

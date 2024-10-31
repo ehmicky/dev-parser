@@ -1,12 +1,12 @@
 // eslint-disable-next-line n/no-deprecated-api
-import { start, Recoverable } from 'node:repl'
+import { Recoverable, start } from 'node:repl'
 
 import { parse } from '../parse/main.js'
 import { serialize } from '../print/main.js'
 
 import { defineCommands } from './commands/main.js'
 import { setupHistory } from './history.js'
-import { isMultiline, handleMultiline } from './multiline.js'
+import { handleMultiline, isMultiline } from './multiline.js'
 import { getOpts } from './options.js'
 
 // Starts a REPL that parses JavaScript code as input and prints their AST

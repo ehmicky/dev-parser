@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "abstract-parser": "^0.6.4",
-    "colors-option": "^6.1.0",
+    "colors-option": "^6.1.1",
     "filter-obj": "^6.1.0",
     "handle-cli-error": "^6.2.0",
     "is-plain-obj": "^4.1.0",
